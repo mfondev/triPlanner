@@ -52,7 +52,7 @@ export default function SignupForm() {
       </View>
       <Text style={styles.accountContainer}>
         Already have an account?{" "}
-        <Link href="/login" style={styles.loginText}>
+        <Link href="/(auth)" style={styles.loginText}>
           Log in Now
         </Link>
       </Text>

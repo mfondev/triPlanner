@@ -21,7 +21,7 @@ export default function ForgotPasswordForm() {
         <Text style={styles.buttonText}>Submit</Text>
       </Pressable>
       <Text style={styles.accountContainer}>
-        Remember your password? <Link href="/login" style={styles.loginText}>Login Now</Link>
+        Remember your password? <Link href="(auth)" style={styles.loginText}>Login Now</Link>
       </Text>
     </View>
   );

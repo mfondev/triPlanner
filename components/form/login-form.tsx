@@ -14,7 +14,7 @@ import { Link, useRouter } from "expo-router";
 export default function LoginForm() {
   const router = useRouter();
   const handleLogin = () => {
-    router.navigate("/signup");
+    router.navigate("/home");
   };
   return (
     <View style={styles.container}>
@@ -63,7 +63,7 @@ export default function LoginForm() {
           </View>
         </View>
         <Text style={styles.accountContainer}>
-          or <Text style={styles.createText}>create an account</Text>
+          or <Link href="/signup" style={styles.createText}>create an account</Link>
         </Text>
       </View>
     </View>
