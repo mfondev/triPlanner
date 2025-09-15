@@ -5,12 +5,28 @@ import React from "react";
 export default function CreateNewPasswordForm() {
   return (
     <View style={styles.container}>
-      <Text style={styles.forgotText}>Create new Password</Text>
-      <Text style={styles.text}>Your new password must be unique from those previously used</Text>
-      <Text style={styles.label}>Password</Text>
-      <TextInput style={styles.input} placeholder="Enter new password" secureTextEntry />
-      <Text style={styles.label}>Password</Text>
-      <TextInput style={styles.input} placeholder="Retype password" secureTextEntry />
+      <View>
+        <Text style={styles.forgotText}>Create new Password</Text>
+        <Text style={styles.text}>
+          Your new password must be unique from those previously used
+        </Text>
+      </View>
+      <View>
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Enter new password"
+          secureTextEntry
+        />
+      </View>
+      <View>
+        <Text style={styles.label}>Password</Text>
+        <TextInput
+          style={styles.input}
+          placeholder="Retype password"
+          secureTextEntry
+        />
+      </View>
       <Pressable style={styles.button}>
         <Text style={styles.buttonText}>Reset Password</Text>
       </Pressable>
@@ -24,7 +40,7 @@ const styles = StyleSheet.create({
     paddingVertical: 40,
     gap: 23,
   },
- forgotText: {
+  forgotText: {
     fontSize: 24,
     fontWeight: 500,
     color: Colors.secondary,
@@ -44,7 +60,7 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 12,
   },
- 
+
   button: {
     backgroundColor: Colors.primary,
     padding: 12,

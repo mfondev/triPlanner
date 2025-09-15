@@ -9,7 +9,8 @@ import {
 import React from "react";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import { Colors } from "@/constants/theme";
-import { useRouter } from "expo-router";
+import { Link, useRouter } from "expo-router";
+
 export default function LoginForm() {
   const router = useRouter();
   const handleLogin = () => {
@@ -29,7 +30,7 @@ export default function LoginForm() {
         />
         <View style={styles.rememberContainer}>
           <Text style={styles.rememberText}>Remember Me</Text>
-          <Text style={styles.forgotText}>Forgot Password?</Text>
+          <Link href="/forgot-password" style={styles.forgotText}>Forgot Password?</Link>
         </View>
         <Pressable style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Sign in</Text>
