@@ -1,13 +1,57 @@
 import { StyleSheet, Text, View } from "react-native";
 import { Tabs } from "expo-router";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
+import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import EvilIcons from "@expo/vector-icons/EvilIcons";
+import { Colors } from "@/constants/theme";
 
 export default function HomeLayout() {
   return (
-    <Tabs>
-      <Tabs.Screen name="index" options={{ title: "Home" }} />
-      <Tabs.Screen name="search" options={{ title: "Search" }} />
-      <Tabs.Screen name="favorites" options={{ title: "Favorites" }} />
-      <Tabs.Screen name="bookings" options={{ title: "Bookings" }} />
+    <Tabs
+      screenOptions={{
+        headerShown: false,
+        tabBarActiveTintColor: Colors.primary,
+        tabBarInactiveTintColor: Colors.accent,
+        tabBarStyle: { backgroundColor: Colors.tabBg },
+      }}
+    >
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: "Home",
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <FontAwesome6 name="house" size={20} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="search/index"
+        options={{
+          title: "search",
+          tabBarIcon: ({ color }) => (
+            <EvilIcons name="search" size={28} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="favorites/index"
+        options={{
+          title: "favorites",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="heart" size={20} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="bookings/index"
+        options={{
+          title: "bookings",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome5 name="clipboard-list" size={20} color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }

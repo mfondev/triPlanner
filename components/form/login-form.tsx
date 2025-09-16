@@ -14,7 +14,7 @@ import { Link, useRouter } from "expo-router";
 export default function LoginForm() {
   const router = useRouter();
   const handleLogin = () => {
-    router.navigate("/home");
+    router.navigate("/(drawer)");
   };
   return (
     <View style={styles.container}>

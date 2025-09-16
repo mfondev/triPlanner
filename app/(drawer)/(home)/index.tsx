@@ -1,12 +1,19 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { Colors } from '@/constants/theme'
 
 export default function index() {
   return (
-    <View>
-      <Text>Home index</Text>
+    <View style={styles.container}>
+      <Text>Let's Travel</Text>
     </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    padding:24,
+    backgroundColor: Colors.gray
+  }
+})

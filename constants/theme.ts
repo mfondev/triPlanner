@@ -1,8 +1,9 @@
-
-
 export const Colors = {
   primary: '#F27932',
   secondary: '#1A1A1A',
-  lightGray: '#EAEAEA'
+  lightGray: '#EAEAEA',
+  gray: '#f7f7f7',
+  accent: '#807e7eff',
+  tabBg: '#fefffe'
 };
 
