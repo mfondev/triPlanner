@@ -30,7 +30,9 @@ export default function LoginForm() {
         />
         <View style={styles.rememberContainer}>
           <Text style={styles.rememberText}>Remember Me</Text>
-          <Link href="/forgot-password" style={styles.forgotText}>Forgot Password?</Link>
+          <Link href="/forgot-password" style={styles.forgotText}>
+            Forgot Password?
+          </Link>
         </View>
         <Pressable style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Sign in</Text>
@@ -38,7 +40,13 @@ export default function LoginForm() {
       </View>
       <View style={styles.lineContainer}>
         <View style={styles.line} />
-        <Text>or continue with</Text>
+        <Text
+          // style={{
+          //   fontFamily: "Poppins_400Regular",
+          // }}
+        >
+          or continue with
+        </Text>
         <View style={styles.line} />
       </View>
       <View
@@ -63,7 +71,10 @@ export default function LoginForm() {
           </View>
         </View>
         <Text style={styles.accountContainer}>
-          or <Link href="/signup" style={styles.createText}>create an account</Link>
+          or{" "}
+          <Link href="/signup" style={styles.createText}>
+            create an account
+          </Link>
         </Text>
       </View>
     </View>
@@ -79,9 +90,11 @@ const styles = StyleSheet.create({
   loginText: {
     fontSize: 24,
     fontWeight: 500,
+    fontFamily: "Poppins_400Regular",
   },
   label: {
     fontSize: 12,
+    fontFamily: "Poppins_600SemiBold",
   },
   input: {
     borderWidth: 1,
@@ -89,6 +102,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 16,
     marginBottom: 12,
+    fontFamily: "Poppins_400Regular",
   },
   rememberContainer: {
     flexDirection: "row",
@@ -97,11 +111,14 @@ const styles = StyleSheet.create({
   },
   rememberText: {
     fontSize: 12,
+    fontFamily: "Poppins_400Regular",
+
     color: "#999999",
   },
   forgotText: {
     fontSize: 12,
     color: Colors.primary,
+    fontFamily: "Poppins_400Regular",
   },
   button: {
     backgroundColor: Colors.primary,
@@ -112,6 +129,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontWeight: "500",
+    fontFamily: "Poppins_400Regular",
   },
   socialButtonContainer: {
     alignSelf: "center",
@@ -141,8 +159,10 @@ const styles = StyleSheet.create({
   accountContainer: {
     alignSelf: "center",
     fontSize: 14,
+    fontFamily: "Poppins_400Regular",
   },
   createText: {
     color: Colors.primary,
+    fontFamily: "Poppins_400Regular",
   },
 });

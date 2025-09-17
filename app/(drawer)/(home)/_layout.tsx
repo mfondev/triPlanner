@@ -13,6 +13,9 @@ export default function HomeLayout() {
         tabBarActiveTintColor: Colors.primary,
         tabBarInactiveTintColor: Colors.accent,
         tabBarStyle: { backgroundColor: Colors.tabBg },
+        tabBarLabelStyle: {
+            fontFamily: "Poppins_400Regular",
+          },
       }}
     >
       <Tabs.Screen
@@ -29,6 +32,7 @@ export default function HomeLayout() {
         name="search/index"
         options={{
           title: "search",
+          
           tabBarIcon: ({ color }) => (
             <EvilIcons name="search" size={28} color={color} />
           ),

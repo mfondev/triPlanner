@@ -45,13 +45,16 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     color: Colors.secondary,
     marginBottom: 4,
+    fontFamily: "Poppins_600SemiBold",
   },
   text: {
     fontSize: 14,
     color: Colors.secondary,
+    fontFamily: "Poppins_400Regular",
   },
   label: {
     fontSize: 12,
+    fontFamily: "Poppins_400Regular",
   },
   input: {
     borderWidth: 1,
@@ -70,12 +73,15 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontWeight: "500",
+    fontFamily: "Poppins_400Regular",
   },
   accountContainer: {
     alignSelf: "center",
     fontSize: 14,
+    fontFamily: "Poppins_400Regular",
   },
   loginText: {
     color: Colors.primary,
+    fontFamily: "Poppins_400Regular",
   },
 });

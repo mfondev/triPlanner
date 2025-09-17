@@ -1,9 +1,13 @@
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import React from "react";
 import { Colors } from "@/constants/theme";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 
 export default function ForgotPasswordForm() {
+  const router = useRouter();
+  function onSubmit() {
+    router.navigate("/new-password");
+  }
   return (
     <View style={styles.container}>
       <View>
@@ -17,11 +21,14 @@ export default function ForgotPasswordForm() {
         <TextInput style={styles.input} placeholder="Enter your email" />
       </View>
 
-      <Pressable style={styles.button}>
+      <Pressable style={styles.button} onPress={onSubmit}>
         <Text style={styles.buttonText}>Submit</Text>
       </Pressable>
       <Text style={styles.accountContainer}>
-        Remember your password? <Link href="(auth)" style={styles.loginText}>Login Now</Link>
+        Remember your password?{" "}
+        <Link href="(auth)" style={styles.loginText}>
+          Login Now
+        </Link>
       </Text>
     </View>
   );
@@ -38,13 +45,16 @@ const styles = StyleSheet.create({
     fontWeight: 500,
     color: Colors.secondary,
     marginBottom: 4,
+    fontFamily: "Poppins_600SemiBold",
   },
   text: {
     fontSize: 14,
     color: Colors.secondary,
+    fontFamily: "Poppins_400Regular",
   },
   label: {
     fontSize: 12,
+    fontFamily: "Poppins_400Regular",
   },
   input: {
     borderWidth: 1,
@@ -52,6 +62,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 16,
     marginBottom: 12,
+    fontFamily: "Poppins_400Regular",
   },
 
   button: {
@@ -63,12 +74,15 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#fff",
     fontWeight: "500",
+    fontFamily: "Poppins_400Regular",
   },
   accountContainer: {
     alignSelf: "center",
     fontSize: 14,
+    fontFamily: "Poppins_400Regular",
   },
   loginText: {
     color: Colors.primary,
+    fontFamily: "Poppins_400Regular",
   },
 });
