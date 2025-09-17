@@ -44,6 +44,7 @@ export default function LoginForm() {
           // style={{
           //   fontFamily: "Poppins_400Regular",
           // }}
+          style={styles.accountContainer}
         >
           or continue with
         </Text>

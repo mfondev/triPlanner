@@ -6,7 +6,7 @@ export default function NotFound() {
     <View style={styles.container}>
       <Text style={styles.title}>404</Text>
       <Text style={styles.message}>Oops! Page not found.</Text>
-      <Link href="/home" style={styles.button}>
+      <Link href="/(drawer)" style={styles.button}>
         <Text style={styles.buttonText}>Go Back</Text>
       </Link>
     </View>

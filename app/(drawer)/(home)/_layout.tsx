@@ -9,7 +9,7 @@ export default function HomeLayout() {
   return (
     <Tabs
       screenOptions={{
-        headerShown: false,
+        // headerShown: false,
         tabBarActiveTintColor: Colors.primary,
         tabBarInactiveTintColor: Colors.accent,
         tabBarStyle: { backgroundColor: Colors.tabBg },
