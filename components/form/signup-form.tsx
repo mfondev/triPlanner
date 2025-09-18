@@ -1,11 +1,50 @@
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
-import React from "react";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  TouchableOpacity,
+} from "react-native";
 import { Colors } from "@/constants/theme";
 import { useRouter } from "expo-router";
 import { Link } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import React, { useState } from "react";
+import { signupUser } from "@/utils/auth";
+import { UserProps } from "@/types/types";
 
 export default function SignupForm() {
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+  const [credentials, setCredentials] = useState({
+    fullName: "",
+    email: "",
+    password: "",
+    phoneNumber: "",
+    country: "",
+  });
+
+  const changeCredentials = ({
+    fullName,
+    email,
+    password,
+    phoneNumber,
+    country,
+  }: UserProps) => {
+    setCredentials((prevState) => ({
+      ...prevState,
+      fullName,
+      email,
+      password,
+      phoneNumber,
+      country,
+    }));
+  };
+
+  const handleSignup = () => {
+    signupUser(credentials)
+  }
 
   return (
     <View style={styles.container}>
@@ -18,32 +57,81 @@ export default function SignupForm() {
       <View>
         <View>
           <Text style={styles.label}>Full Name</Text>
-          <TextInput placeholder="Enter your full name" style={styles.input} />
+          <TextInput
+            placeholder="Enter your full name"
+            autoComplete="name"
+            style={styles.input}
+            value={credentials.fullName}
+            onChangeText={(text) =>
+              changeCredentials({ ...credentials, fullName: text })
+            }
+          />
         </View>
         <View>
           <Text style={styles.label}>E-mail</Text>
-          <TextInput placeholder="Enter your email" style={styles.input} />
-        </View>
-        <View>
-          <Text style={styles.label}>Password</Text>
           <TextInput
-            placeholder="Enter your password"
-            secureTextEntry
+            placeholder="Enter your email"
+            autoComplete="email"
             style={styles.input}
+            value={credentials.email}
+            onChangeText={(text) => {
+              changeCredentials({ ...credentials, email: text });
+            }}
           />
         </View>
+        <View style={{ marginBottom: 16 }}>
+          <Text style={styles.label}>Password</Text>
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              borderRadius: 8,
+              borderColor: Colors.lightGray,
+              borderWidth: 1,
+              paddingHorizontal: 10,
+            }}
+          >
+            <TextInput
+              placeholder="Enter your password"
+              secureTextEntry={!showPassword}
+              style={{ flex: 1, height: 50 }}
+              value={credentials.password}
+              onChangeText={(text) => {
+                changeCredentials({ ...credentials, password: text });
+              }}
+            />
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+              <Ionicons
+                name={showPassword ? "eye-off" : "eye"}
+                size={22}
+                color="gray"
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+
         <View>
           <Text style={styles.label}>Phone Number</Text>
           <TextInput
             placeholder="Enter your phone number"
             style={styles.input}
+            keyboardType="number-pad"
+            textContentType="telephoneNumber"
+            value={credentials.phoneNumber}
+            onChangeText={(text) => {
+              changeCredentials({ ...credentials, phoneNumber: text });
+            }}
           />
         </View>
         <View>
           <Text style={styles.label}>Select Nationality</Text>
           <TextInput
             placeholder="Enter your nationality"
+            textContentType="countryName"
             style={styles.input}
+            onChangeText={(text) => {
+              changeCredentials({ ...credentials, country: text });
+            }}
           />
         </View>
         <Pressable style={styles.button}>

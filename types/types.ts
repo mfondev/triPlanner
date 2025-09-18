@@ -1,0 +1,7 @@
+export type UserProps = {
+  fullName: string;
+  email: string;
+  password: string;
+  phoneNumber: string;
+  country: string
+};
