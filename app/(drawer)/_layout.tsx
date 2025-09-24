@@ -97,6 +97,7 @@ export default function _layout() {
               </TouchableOpacity>
             ),
             headerRight: () => null,
+            headerStyle: { backgroundColor: Colors.gray },
             drawerLabel: ({ color }) => (
               <View
                 style={{
@@ -140,6 +141,44 @@ export default function _layout() {
           },
         }}
       />
+      <Drawer.Screen
+        name="country/index"
+        options={({ navigation }) => ({
+          title: "Countries traditions",
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            >
+              <Ionicons name="chevron-back" size={20} color={Colors.accent} />
+            </TouchableOpacity>
+          ),
+          headerRight: () => null,
+          drawerLabelStyle: {
+            fontFamily: "Poppins_400Regular",
+            fontSize: 14,
+            color: "black",
+          },
+        })}
+      />
+      <Drawer.Screen
+        name="country/[id]"
+        options={({ navigation }) => ({
+          drawerItemStyle: { display: "none" },
+          
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => navigation.goBack()}
+              style={{ marginLeft: 10 }}
+            >
+              <Ionicons name="chevron-back" size={20} color={Colors.accent} />
+            </TouchableOpacity>
+          ),
+          headerRight: () => null,
+          headerShown: false
+        })}
+      />
     </Drawer>
   );
 }
+
