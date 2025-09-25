@@ -41,6 +41,15 @@ export default function Countries() {
         <FlatList
           data={COUNTRIES}
           keyExtractor={(item) => item.id}
+          ItemSeparatorComponent={() => (
+            <View
+              style={{
+                height: 1,
+                backgroundColor: "#e0e0e0",
+                marginHorizontal: 10,
+              }}
+            />
+          )}
           renderItem={({ item }) => (
             <Pressable
               style={{
@@ -66,7 +75,7 @@ export default function Countries() {
                   width: 25,
                   height: 25,
                   borderRadius: 50,
-                  overflow: "hidden", 
+                  overflow: "hidden",
                   backgroundColor: "#fff",
                   alignItems: "center",
                   justifyContent: "center",
@@ -74,9 +83,17 @@ export default function Countries() {
               >
                 <SvgUri source={{ uri: item.flag }} width={25} height={25} />
               </View>
-              <Text>{item.country}</Text>
+              <Text
+                style={{
+                  fontSize: 15,
+                  fontFamily: "Poppins_400Regular",
+                }}
+              >
+                {item.country}
+              </Text>
             </Pressable>
           )}
+          ListFooterComponent={<View style={{ height: 60 }} />}
         />
       </View>
     </View>

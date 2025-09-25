@@ -102,7 +102,7 @@ export default function _layout() {
               <View
                 style={{
                   borderBottomWidth: 1,
-                  borderBottomColor: Colors.grey,
+                  borderBottomColor: Colors.lightGray,
                   flexDirection: "row",
                   alignItems: "center",
                   justifyContent: "space-between",

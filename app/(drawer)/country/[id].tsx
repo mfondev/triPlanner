@@ -6,17 +6,20 @@ import {
   StatusBar,
   ScrollView,
   TouchableOpacity,
+  FlatList,
 } from "react-native";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import { COUNTRIES } from "@/utils/data";
 import { Colors } from "@/constants/theme";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
+import Traditions from "@/components/traditions";
 
 export default function CountryScreen() {
   const { id, limit } = useLocalSearchParams();
   const navigation = useNavigation();
   const countryDetail = COUNTRIES.filter((country) => country.id === id);
+  console.log(countryDetail);
 
   return (
     <ScrollView>
@@ -44,21 +47,25 @@ export default function CountryScreen() {
           </TouchableOpacity>
           <View
             style={{
-              position: "absolute",
-              bottom: -20,
-              left: 0,
-              right: 0,
+              marginTop: -30,
               marginHorizontal: 20,
-              padding: 16,
               backgroundColor: "white",
-              borderRadius: 6
+              borderRadius: 10,
+              paddingTop: 16,
+              paddingBottom: 16,
+              overflow: "hidden", 
             }}
           >
-            <View style={{
-                alignItems:'center',
-                justifyContent:'center',
-                flexDirection:'row'
-            }}>
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                flexDirection: "row",
+                paddingBottom: 16,
+                borderBottomWidth: 1,
+                borderBottomColor: Colors.lightGray,
+              }}
+            >
               <EvilIcons name="location" size={20} color={Colors.secondary} />
               <Text
                 style={{
@@ -66,18 +73,21 @@ export default function CountryScreen() {
                   fontSize: 16,
                   fontWeight: "bold",
                   textAlign: "center",
+                  fontFamily: 'Poppins_600SemiBold'
                 }}
               >
                 {country.country}
               </Text>
             </View>
+            <FlatList
+              data={countryDetail}
+              keyExtractor={(item) => item.id}
+              renderItem={({ item }) => <Traditions trads={item.traditions} />}
+              scrollEnabled={false} 
+            />
           </View>
         </View>
       ))}
-      {/* <View style={{ paddingHorizontal: 16, paddingVertical: 12 }}>
-        <Text>User Id: {id}</Text>
-        <Text>Limit: {limit}</Text>
-      </View> */}
     </ScrollView>
   );
 }
