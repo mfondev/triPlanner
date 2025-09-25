@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 
-export default function Passengers() {
+export default function modal() {
   return (
-    <View>
-      <Text>passesngers</Text>
+    <View >
+      <Text>modal</Text>
     </View>
   )
 }
