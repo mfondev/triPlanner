@@ -68,6 +68,17 @@ export default function _layout() {
         drawerHideStatusBarOnOpen: true,
         headerShadowVisible: false,
         drawerActiveBackgroundColor: "transparent",
+        drawerInactiveBackgroundColor: "transparent",
+        drawerItemStyle: {
+          borderRadius: 0,
+          marginHorizontal: 0,
+          paddingHorizontal: 0,
+        },
+        drawerStyle: {},
+        drawerContentContainerStyle: {
+          paddingHorizontal: 0,
+          paddingVertical: 0,
+        },
       }}
     >
       <Drawer.Screen
@@ -91,7 +102,7 @@ export default function _layout() {
             headerLeft: () => (
               <TouchableOpacity
                 onPress={() => navigation.goBack()}
-                style={{ marginLeft: 10 }}
+                style={{ marginLeft: 20 }}
               >
                 <Ionicons name="chevron-back" size={20} color={Colors.accent} />
               </TouchableOpacity>
@@ -107,6 +118,7 @@ export default function _layout() {
                   alignItems: "center",
                   justifyContent: "space-between",
                   paddingBottom: 5,
+                  // marginLeft: -20,
                 }}
               >
                 <Text
@@ -154,10 +166,25 @@ export default function _layout() {
             </TouchableOpacity>
           ),
           headerRight: () => null,
-          headerShown: false
+          headerShown: false,
+        })}
+      />
+      <Drawer.Screen
+        name="(home)/search/search-history"
+        options={({ navigation }) => ({
+          headerShown: true, // show header
+          headerLeft: ({ tintColor }) => (
+            <TouchableOpacity onPress={() => navigation.goBack()}>
+              <Ionicons
+                name="chevron-back"
+                size={24}
+                color={tintColor ?? Colors.accent}
+              />
+            </TouchableOpacity>
+          ),
+          headerTitle: "", // optional
         })}
       />
     </Drawer>
   );
 }
-

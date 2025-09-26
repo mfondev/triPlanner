@@ -82,12 +82,12 @@ export const COUNTRIES: Countries = [
       },
     ],
   },
-    {
+  {
     id: "4",
     country: "Brazil",
     flag: "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
     place_image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8YnJhemlsfGVufDB8MHwwfHx8",
+      "https://images.unsplash.com/photo-1516306580123-e6e52b1b7b5f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YnJhemlsfGVufDB8fDB8fHww",
     traditions: [
       {
         name: "Carnival",
@@ -353,7 +353,8 @@ export const COUNTRIES: Countries = [
           "The siesta is Spain’s famous afternoon rest, traditionally taken after lunch. Shops and businesses close as people relax or nap. It reflects a rhythm of life connected to climate, health, and balance. Though less common in modern cities, it remains a cherished cultural practice. The siesta emphasizes rest, family time, and well-being. It is symbolic of Spain’s relaxed and joyful lifestyle.",
       },
     ],
-  },  {
+  },
+  {
     id: "12",
     country: "Germany",
     flag: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",

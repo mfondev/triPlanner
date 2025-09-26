@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import PassengerForm from '@/components/form/passenger-form'
 
 export default function modal() {
   return (
     <View >
-      <Text>modal</Text>
+     <PassengerForm />
     </View>
   )
 }

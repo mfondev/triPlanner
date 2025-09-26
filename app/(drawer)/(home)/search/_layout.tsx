@@ -1,19 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import { Stack } from "expo-router";
-import { Colors } from "@/constants/theme";
 
 export default function _layout() {
   return (
     <Stack>
       <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen
-        name="modal"
-        options={{
-          presentation: "modal",
-          headerShown: false,
-          contentStyle: { backgroundColor: Colors.gray },
-        }}
-      />
+      <Stack.Screen name="search-history" options={{ headerShown: false }} />
     </Stack>
   );
 }

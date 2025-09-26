@@ -10,6 +10,7 @@ export default function HomeLayout() {
     <Tabs
       screenOptions={{
         // headerShown: false,
+        headerStyle:{backgroundColor: Colors.gray},
         tabBarActiveTintColor: Colors.primary,
         tabBarInactiveTintColor: Colors.accent,
         tabBarStyle: { backgroundColor: Colors.tabBg },
@@ -29,10 +30,10 @@ export default function HomeLayout() {
         }}
       />
       <Tabs.Screen
-        name="search/index"
+        name="search"
         options={{
           title: "search",
-          
+          headerShown: false,
           tabBarIcon: ({ color }) => (
             <EvilIcons name="search" size={28} color={color} />
           ),
