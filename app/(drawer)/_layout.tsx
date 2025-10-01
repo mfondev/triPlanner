@@ -57,7 +57,8 @@ export default function _layout() {
   return (
     <Drawer
       screenOptions={{
-        headerLeft: () => <DrawerIcon />,
+        // headerShown: false,
+        headerLeft: () => <DrawerIcon  />,
         headerRight: () => (
           <View style={{ marginRight: 20 }}>
             <AvatarIcon width={40} height={35} />
@@ -83,7 +84,11 @@ export default function _layout() {
     >
       <Drawer.Screen
         name="(home)"
-        options={{ title: "", drawerItemStyle: { display: "none" } }}
+        options={{
+          headerShown: false,
+          title: "",
+          drawerItemStyle: { display: "none" },
+        }}
       />
       {drawertitle.map((screen) => (
         <Drawer.Screen
@@ -170,20 +175,11 @@ export default function _layout() {
         })}
       />
       <Drawer.Screen
-        name="(home)/search/search-history"
-        options={({ navigation }) => ({
-          headerShown: true, // show header
-          headerLeft: ({ tintColor }) => (
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-              <Ionicons
-                name="chevron-back"
-                size={24}
-                color={tintColor ?? Colors.accent}
-              />
-            </TouchableOpacity>
-          ),
-          headerTitle: "", // optional
-        })}
+        name="(home)/search"
+        options={{
+          headerShown: false, // 👈 turn off drawer header for search
+          // drawerItemStyle: { display: "none" }, // optional: hides it from the drawer list
+        }}
       />
     </Drawer>
   );

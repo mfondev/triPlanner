@@ -1,11 +1,17 @@
-import { StyleSheet, Text, View,ScrollView,TextInput } from 'react-native'
-import { Colors } from '@/constants/theme';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  TextInput,
+  Pressable,
+} from "react-native";
+import { Colors } from "@/constants/theme";
+import SubmitButton from "../ui/submit-button";
 
 export default function PassengerForm() {
-
   return (
     <ScrollView style={styles.container}>
-      
       <View>
         <View>
           <Text style={styles.label}>Full Name</Text>
@@ -13,7 +19,6 @@ export default function PassengerForm() {
             placeholder="Enter your full name"
             autoComplete="name"
             style={styles.input}
-            
           />
         </View>
         <View>
@@ -22,7 +27,6 @@ export default function PassengerForm() {
             placeholder="Enter your email"
             autoComplete="email"
             style={styles.input}
-           
           />
         </View>
         <View style={{ marginBottom: 16 }}>
@@ -40,9 +44,7 @@ export default function PassengerForm() {
             <TextInput
               placeholder="Enter your password"
               style={{ flex: 1, height: 50 }}
-              
             />
-            
           </View>
         </View>
 
@@ -53,7 +55,6 @@ export default function PassengerForm() {
             style={styles.input}
             keyboardType="number-pad"
             textContentType="telephoneNumber"
-         
           />
         </View>
         <View>
@@ -62,7 +63,6 @@ export default function PassengerForm() {
             placeholder="Enter your nationality"
             textContentType="countryName"
             style={styles.input}
-            
           />
         </View>
         <View>
@@ -71,7 +71,6 @@ export default function PassengerForm() {
             placeholder=""
             textContentType="birthdate"
             style={styles.input}
-            
           />
         </View>
         <View>
@@ -81,22 +80,16 @@ export default function PassengerForm() {
             style={styles.input}
           />
         </View>
-       <View>
+        <View>
           <Text style={styles.label}>Issued Date</Text>
-          <TextInput
-            placeholder="issued date"
-            style={styles.input}
-          />
+          <TextInput placeholder="issued date" style={styles.input} />
         </View>
-       <View>
+        <View >
           <Text style={styles.label}>Expiry Date</Text>
-          <TextInput
-            placeholder="enter expiry date"
-            style={styles.input}
-          />
+          <TextInput placeholder="enter expiry date" style={[styles.input, {marginBottom: 15}]} />
         </View>
       </View>
-      
+      <SubmitButton subject="Submit" />
     </ScrollView>
   );
 }

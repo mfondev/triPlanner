@@ -4,26 +4,39 @@ import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
 import { Colors } from "@/constants/theme";
+import DrawerIcon from "@/components/ui/drawerIcon";
+import AvatarIcon from "@/assets/images/avatar.svg";
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 
 export default function HomeLayout() {
   return (
     <Tabs
       screenOptions={{
         // headerShown: false,
-        headerStyle:{backgroundColor: Colors.gray},
+        headerLeft: () => <DrawerIcon />,
+        headerRight: () => (
+          <View style={{ marginRight: 20 }}>
+            <AvatarIcon width={40} height={35} />
+          </View>
+        ),
+        headerTitle: "",
+        headerShadowVisible: false,
+
+        headerStyle: { backgroundColor: Colors.gray },
         tabBarActiveTintColor: Colors.primary,
         tabBarInactiveTintColor: Colors.accent,
         tabBarStyle: { backgroundColor: Colors.tabBg },
         tabBarLabelStyle: {
-            fontFamily: "Poppins_400Regular",
-          },
+          fontFamily: "Poppins_400Regular",
+        },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
           title: "Home",
-          headerShown: false,
+          headerTitle: "",
+          // headerShown: false,
           tabBarIcon: ({ color }) => (
             <FontAwesome6 name="house" size={20} color={color} />
           ),
@@ -46,6 +59,7 @@ export default function HomeLayout() {
           tabBarIcon: ({ color }) => (
             <FontAwesome5 name="heart" size={20} color={color} />
           ),
+          sceneStyle: { backgroundColor: Colors.gray },
         }}
       />
       <Tabs.Screen
@@ -53,8 +67,9 @@ export default function HomeLayout() {
         options={{
           title: "bookings",
           tabBarIcon: ({ color }) => (
-            <FontAwesome5 name="clipboard-list" size={20} color={color} />
+           <MaterialCommunityIcons name="ticket"  size={20} color={color} />
           ),
+          sceneStyle: { backgroundColor: Colors.gray },
         }}
       />
     </Tabs>

@@ -60,6 +60,7 @@ export default function SearchHistory() {
 const styles = StyleSheet.create({
   list: {
     padding: 16,
+    backgroundColor: Colors.gray
   },
   card: {
     marginBottom: 16,
