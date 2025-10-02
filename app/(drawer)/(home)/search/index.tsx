@@ -5,18 +5,17 @@ import {
   TextInput,
   TouchableOpacity,
   StyleSheet,
+  ScrollView,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Colors } from "@/constants/theme";
 import { Link } from "expo-router";
+import DropdownPicker from "@/components/ui/dropdown-picker";
 
 export default function Search() {
-  const [destination, setDestination] = useState("");
   const [departure, setDeparture] = useState("");
   const [returnDate, setReturnDate] = useState("");
-  const [tripClass, setTripClass] = useState("");
-  const [transport, setTransport] = useState("");
 
   return (
     <View style={styles.container}>
@@ -32,33 +31,8 @@ export default function Search() {
         Let's travel
       </Text>
       <View style={styles.formWrapper}>
-        <View style={styles.inputWrapper}>
-          <Text style={styles.label}>From</Text>
-          <View style={styles.input}>
-            <TextInput
-              style={styles.textInput}
-              value={destination}
-              onChangeText={setDestination}
-              placeholder="Enter destination"
-              placeholderTextColor={Colors.grey}
-            />
-            <Ionicons name="chevron-down" size={20} color={Colors.grey} />
-          </View>
-        </View>
-        <View style={styles.inputWrapper}>
-          <Text style={styles.label}>To</Text>
-          <View style={styles.input}>
-            <TextInput
-              style={styles.textInput}
-              value={destination}
-              onChangeText={setDestination}
-              placeholder="Enter destination"
-              placeholderTextColor={Colors.grey}
-            />
-            <Ionicons name="chevron-down" size={20} color={Colors.grey} />
-          </View>
-        </View>
-
+       <DropdownPicker label="From" placeholder="Enter destination" />
+       <DropdownPicker label="To" placeholder="Enter destination" />
         <View style={styles.inputWrapper}>
           <Text style={styles.label}>Departure</Text>
           <View style={styles.input}>
@@ -72,8 +46,6 @@ export default function Search() {
             <Ionicons name="calendar-outline" size={20} color={Colors.grey} />
           </View>
         </View>
-
-        {/* Return */}
         <View style={styles.inputWrapper}>
           <Text style={styles.label}>Return</Text>
           <View style={styles.input}>
@@ -87,37 +59,10 @@ export default function Search() {
             <Ionicons name="calendar-outline" size={20} color={Colors.grey} />
           </View>
         </View>
+       <DropdownPicker label="Class" placeholder="Select Class" />
+       <DropdownPicker label="Transport" placeholder="Select Transport" />
 
-        {/* Class */}
-        <View style={styles.inputWrapper}>
-          <Text style={styles.label}>Class</Text>
-          <View style={styles.input}>
-            <TextInput
-              style={styles.textInput}
-              value={tripClass}
-              onChangeText={setTripClass}
-              placeholder="Select class"
-              placeholderTextColor={Colors.grey}
-            />
-            <Ionicons name="chevron-down" size={20} color={Colors.grey} />
-          </View>
-        </View>
-
-        {/* Transport */}
-        <View style={styles.inputWrapper}>
-          <Text style={styles.label}>Transport</Text>
-          <View style={styles.input}>
-            <TextInput
-              style={styles.textInput}
-              value={transport}
-              onChangeText={setTransport}
-              placeholder="Select transport"
-              placeholderTextColor={Colors.grey}
-            />
-            <Ionicons name="chevron-down" size={20} color={Colors.grey} />
-          </View>
-        </View>
-        <Link style={styles.button} href='/search/search-history'>
+        <Link style={styles.button} href="/search/search-history">
           <Ionicons
             name="search"
             size={18}
@@ -177,12 +122,12 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: Colors.primary,
     flexDirection: "row",
-    gap:10,
+    gap: 10,
     justifyContent: "center",
     alignItems: "center",
     paddingVertical: 12,
     borderRadius: 7,
-    textAlign: 'center',
+    textAlign: "center",
   },
   buttonText: {
     fontFamily: "Poppins_400Regular",

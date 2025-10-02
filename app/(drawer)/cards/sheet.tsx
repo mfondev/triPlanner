@@ -16,7 +16,6 @@ export default function sheet() {
     <View style={styles.container}>
       <View style={styles.inputWrapper}>
         <Text style={styles.label}>Scan</Text>
-
         <View
           style={[styles.input, { flexDirection: "row", alignItems: "center" }]}
         >

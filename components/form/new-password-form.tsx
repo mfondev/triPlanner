@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import { Colors } from "@/constants/theme";
-import React from "react";
+import { router } from "expo-router";
 
 export default function CreateNewPasswordForm() {
   return (
@@ -27,7 +27,7 @@ export default function CreateNewPasswordForm() {
           secureTextEntry
         />
       </View>
-      <Pressable style={styles.button}>
+      <Pressable style={styles.button} onPress={() => router.navigate('/(auth)/password-changed')}>
         <Text style={styles.buttonText}>Reset Password</Text>
       </Pressable>
     </View>

@@ -1,44 +1,5 @@
-import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
-import { Colors } from "@/constants/theme";
-import { Link } from "expo-router";
+import AddButton from "@/components/ui/add-button";
 
 export default function Passengers() {
-  return (
-    <View style={styles.container}>
-      <Link
-        href="/passengers/modal"
-        style={{
-          backgroundColor: "#fff",
-          borderWidth: 1,
-          borderColor: Colors.primary,
-          paddingVertical: 12,
-          paddingHorizontal: 20,
-          borderRadius: 7,
-          width: "100%",
-          alignItems: "center",
-        }}
-      >
-        <Text
-          style={{
-            color: Colors.primary,
-            fontSize: 16,
-            fontWeight: "500",
-            fontFamily: "Poppins_400Regular",
-            textAlign: "center",
-          }}
-        >
-          Add new passenger
-        </Text>
-      </Link>
-    </View>
-  );
+  return <AddButton path="/passengers/modal" subject="Add new Passenger" />;
 }
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: 10,
-    paddingHorizontal: 25,
-    alignItems: "center",
-    backgroundColor: Colors.gray,
-  },
-});
