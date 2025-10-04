@@ -2,7 +2,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { Link } from "expo-router";
 import SimpleLineIcons from "@expo/vector-icons/SimpleLineIcons";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Colors } from "@/constants/theme";
 
 const DATA = [
@@ -18,7 +18,7 @@ const DATA = [
     icon: <MaterialIcons name="route" size={20} color="white" />,
     header: "Start by planning your trip",
     link: "Create own route",
-    path: "/travel",
+    path: "/(drawer)/routes",
   },
   {
     id: "3",

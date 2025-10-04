@@ -1,25 +1,34 @@
 import { StyleSheet, Text, View } from "react-native";
 import { Colors } from "@/constants/theme";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 type Props = {
   label: string;
   placeholder: string;
+  item: string[];
+  availability?: boolean;
 };
 
-export default function DropdownPicker({ label, placeholder }: Props) {
+export default function DropdownPicker({
+  label,
+  placeholder,
+  item,
+  availability,
+}: Props) {
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    { label: "Apple", value: "apple" },
-    { label: "Banana", value: "banana" },
-    { label: "Pear", value: "pear" },
-  ]);
+  const [items, setItems] = useState(
+    item?.map((item) => ({
+      label: item,
+      value: item,
+    }))
+  );
+
 
   return (
-    <View style={[styles.inputWrapper, {zIndex: 1000 }]}>
+    <View style={[styles.inputWrapper, { zIndex: 1000 }]}>
       <Text style={styles.label}>{label}</Text>
       <DropDownPicker
         open={open}

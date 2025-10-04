@@ -1,3 +1,13 @@
+export type ClassProps = {
+  id: string;
+  flightClass: string;
+};
+
+export const flightClass : ClassProps[] = [
+  { id: "1", flightClass: "Business Class" },
+  { id: "2", flightClass: "First Class" },
+];
+
 export type Tradition = {
   name: string;
   description: string;
@@ -6,6 +16,7 @@ export type Tradition = {
 export type Country = {
   id: string;
   country: string;
+  capital: string;
   flag: string;
   place_image: string;
   traditions: Tradition[];
@@ -17,6 +28,7 @@ export const COUNTRIES: Countries = [
   {
     id: "1",
     country: "Nigeria",
+     capital: "Abuja",
     flag: "https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg",
     place_image:
       "https://images.unsplash.com/photo-1594538756542-8c88bda491c5?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bmlnZXJpYXxlbnwwfDB8MHx8fDA%3D",
@@ -51,6 +63,7 @@ export const COUNTRIES: Countries = [
   {
     id: "2",
     country: "Japan",
+     capital: "Tokyo",
     flag: "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
     place_image:
       "https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8amFwYW58ZW58MHwwfDB8fHww",
@@ -85,6 +98,7 @@ export const COUNTRIES: Countries = [
   {
     id: "4",
     country: "Brazil",
+     capital: "Brasilia",
     flag: "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
     place_image:
       "https://images.unsplash.com/photo-1516306580123-e6e52b1b7b5f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YnJhemlsfGVufDB8fDB8fHww",
@@ -119,6 +133,7 @@ export const COUNTRIES: Countries = [
   {
     id: "5",
     country: "Mexico",
+     capital: "Mexico City",
     flag: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg",
     place_image:
       "https://images.unsplash.com/photo-1545243424-0ce743321e11?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWV4aWNvfGVufDB8MHwwfHx8",
@@ -153,6 +168,7 @@ export const COUNTRIES: Countries = [
   {
     id: "6",
     country: "China",
+    capital: "Beijing",
     flag: "https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_China.svg",
     place_image:
       "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2hpbmF8ZW58MHwwfDB8fHww",
@@ -187,6 +203,7 @@ export const COUNTRIES: Countries = [
   {
     id: "7",
     country: "France",
+    capital: "Paris",
     flag: "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
     place_image:
       "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnJhbmNlfGVufDB8MHwwfHx8",
@@ -221,6 +238,7 @@ export const COUNTRIES: Countries = [
   {
     id: "8",
     country: "Italy",
+      capital: "Rome",
     flag: "https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg",
     place_image:
       "https://images.unsplash.com/photo-1528127269322-539801943592?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aXRhbHl8ZW58MHwwfDB8fHww",
@@ -255,6 +273,7 @@ export const COUNTRIES: Countries = [
   {
     id: "9",
     country: "Egypt",
+      capital: "Cairo",
     flag: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg",
     place_image:
       "https://images.unsplash.com/photo-1600520611035-84157ad4084d?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZWd5cHR8ZW58MHwwfDB8fHww",
@@ -289,6 +308,7 @@ export const COUNTRIES: Countries = [
   {
     id: "10",
     country: "South Africa",
+      capital: "Pretoria",
     flag: "https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg",
     place_image:
       "https://plus.unsplash.com/premium_photo-1697730061063-ad499e343f26?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c291dGglMjBhZnJpY2F8ZW58MHwwfDB8fHww",
@@ -323,6 +343,7 @@ export const COUNTRIES: Countries = [
   {
     id: "11",
     country: "Spain",
+    capital: "Madrid",
     flag: "https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg",
     place_image:
       "https://plus.unsplash.com/premium_photo-1754265633089-580f5867b801?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2FudGlhZ28lMjBiZXJuYWIlQzMlQTl1fGVufDB8MHwwfHx8MA%3D%3D",
@@ -357,6 +378,7 @@ export const COUNTRIES: Countries = [
   {
     id: "12",
     country: "Germany",
+    capital: "Berlin",
     flag: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
     place_image:
       "https://images.unsplash.com/photo-1501952476817-d7ae22e8ee4e?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzYWNlbnR8N3x8Z2VybWFueXxlbnwwfDB8fHww",
@@ -391,6 +413,7 @@ export const COUNTRIES: Countries = [
   {
     id: "13",
     country: "United States",
+     capital: "Washington, D.C.",
     flag: "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
     place_image:
       "https://images.unsplash.com/photo-1633864528487-514c23f2b184?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHVuaXRlZCUyMHN0YXRlc3xlbnwwfDB8MHx8fDA%3D",
@@ -425,6 +448,7 @@ export const COUNTRIES: Countries = [
   {
     id: "14",
     country: "Turkey",
+     capital: "Ankara",
     flag: "https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg",
     place_image:
       "https://images.unsplash.com/photo-1623621534850-d325a1980c7e?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHR1cmtleXxlbnwwfDB8MHx8fDA%3D",
@@ -459,6 +483,7 @@ export const COUNTRIES: Countries = [
   {
     id: "15",
     country: "Australia",
+      capital: "Canberra",
     flag: "https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg",
     place_image:
       "https://images.unsplash.com/photo-1548296404-93c7694b2f91?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF1c3RyYWxpYXxlbnwwfDB8MHx8fDA%3D",
