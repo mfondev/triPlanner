@@ -29,7 +29,7 @@ export const COUNTRIES: Countries = [
     id: "1",
     country: "Nigeria",
      capital: "Abuja",
-    flag: "https://upload.wikimedia.org/wikipedia/commons/7/79/Flag_of_Nigeria.svg",
+    flag: "https://images.unsplash.com/photo-1679480129025-083222f76e3b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1074",
     place_image:
       "https://images.unsplash.com/photo-1594538756542-8c88bda491c5?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bmlnZXJpYXxlbnwwfDB8MHx8fDA%3D",
     traditions: [
@@ -64,7 +64,7 @@ export const COUNTRIES: Countries = [
     id: "2",
     country: "Japan",
      capital: "Tokyo",
-    flag: "https://upload.wikimedia.org/wikipedia/en/9/9e/Flag_of_Japan.svg",
+    flag: "https://images.unsplash.com/photo-1676286155316-b6098c4fd35a?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8amFwYW4lMjBmbGFnfGVufDB8fDB8fHwy&auto=format&fit=crop&q=60&w=500",
     place_image:
       "https://images.unsplash.com/photo-1542051841857-5f90071e7989?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8amFwYW58ZW58MHwwfDB8fHww",
     traditions: [
@@ -96,10 +96,10 @@ export const COUNTRIES: Countries = [
     ],
   },
   {
-    id: "4",
+    id: "3",
     country: "Brazil",
      capital: "Brasilia",
-    flag: "https://upload.wikimedia.org/wikipedia/en/0/05/Flag_of_Brazil.svg",
+    flag: "https://images.unsplash.com/photo-1675855545269-ac1eb48a4aba?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YnJhemlsJTIwZmxhZ3xlbnwwfHwwfHx8Mg%3D%3D&auto=format&fit=crop&q=60&w=500",
     place_image:
       "https://images.unsplash.com/photo-1516306580123-e6e52b1b7b5f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YnJhemlsfGVufDB8fDB8fHww",
     traditions: [
@@ -131,10 +131,10 @@ export const COUNTRIES: Countries = [
     ],
   },
   {
-    id: "5",
+    id: "4",
     country: "Mexico",
      capital: "Mexico City",
-    flag: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg",
+    flag: "https://images.unsplash.com/photo-1542339754-fe63b8476ab7?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bWV4aWNvJTIwZmxhZ3xlbnwwfHwwfHx8Mg%3D%3D&auto=format&fit=crop&q=60&w=500",
     place_image:
       "https://images.unsplash.com/photo-1545243424-0ce743321e11?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8bWV4aWNvfGVufDB8MHwwfHx8",
     traditions: [
@@ -166,10 +166,10 @@ export const COUNTRIES: Countries = [
     ],
   },
   {
-    id: "6",
+    id: "5",
     country: "China",
     capital: "Beijing",
-    flag: "https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_China.svg",
+    flag: "https://images.unsplash.com/photo-1676286145991-d305692b3a8b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8Y2hpbmElMjBmbGFnfGVufDB8fDB8fHwy&auto=format&fit=crop&q=60&w=500",
     place_image:
       "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2hpbmF8ZW58MHwwfDB8fHww",
     traditions: [
@@ -201,10 +201,10 @@ export const COUNTRIES: Countries = [
     ],
   },
   {
-    id: "7",
+    id: "6",
     country: "France",
     capital: "Paris",
-    flag: "https://upload.wikimedia.org/wikipedia/en/c/c3/Flag_of_France.svg",
+    flag: "https://images.unsplash.com/photo-1675855508131-798d42b6f1ee?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnJhbmNlJTIwZmxhZ3xlbnwwfHwwfHx8Mg%3D%3D&auto=format&fit=crop&q=60&w=500",
     place_image:
       "https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8ZnJhbmNlfGVufDB8MHwwfHx8",
     traditions: [
@@ -236,10 +236,10 @@ export const COUNTRIES: Countries = [
     ],
   },
   {
-    id: "8",
+    id: "7",
     country: "Italy",
       capital: "Rome",
-    flag: "https://upload.wikimedia.org/wikipedia/en/0/03/Flag_of_Italy.svg",
+    flag: "https://images.unsplash.com/photo-1675855549259-f742a935267b?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGl0YWx5JTIwZmxhZ3xlbnwwfHwwfHx8Mg%3D%3D&auto=format&fit=crop&q=60&w=500",
     place_image:
       "https://images.unsplash.com/photo-1528127269322-539801943592?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aXRhbHl8ZW58MHwwfDB8fHww",
     traditions: [
@@ -271,10 +271,10 @@ export const COUNTRIES: Countries = [
     ],
   },
   {
-    id: "9",
+    id: "8",
     country: "Egypt",
       capital: "Cairo",
-    flag: "https://upload.wikimedia.org/wikipedia/commons/f/fe/Flag_of_Egypt.svg",
+    flag: "https://images.unsplash.com/photo-1678371839264-8fdb3c514ed8?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZWd5cHQlMjBmbGFnfGVufDB8fDB8fHwy&auto=format&fit=crop&q=60&w=500",
     place_image:
       "https://images.unsplash.com/photo-1600520611035-84157ad4084d?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8ZWd5cHR8ZW58MHwwfDB8fHww",
     traditions: [
@@ -306,10 +306,10 @@ export const COUNTRIES: Countries = [
     ],
   },
   {
-    id: "10",
+    id: "9",
     country: "South Africa",
       capital: "Pretoria",
-    flag: "https://upload.wikimedia.org/wikipedia/commons/a/af/Flag_of_South_Africa.svg",
+    flag: "https://images.unsplash.com/photo-1679480129388-1a5c054bac10?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c291dGglMjBhZnJpY2ElMjBmbGFnfGVufDB8fDB8fHwy&auto=format&fit=crop&q=60&w=500",
     place_image:
       "https://plus.unsplash.com/premium_photo-1697730061063-ad499e343f26?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c291dGglMjBhZnJpY2F8ZW58MHwwfDB8fHww",
     traditions: [
@@ -341,10 +341,10 @@ export const COUNTRIES: Countries = [
     ],
   },
   {
-    id: "11",
+    id: "10",
     country: "Spain",
     capital: "Madrid",
-    flag: "https://upload.wikimedia.org/wikipedia/en/9/9a/Flag_of_Spain.svg",
+    flag: "https://images.unsplash.com/photo-1676286155301-23733df4dc11?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8c3BhaW4lMjBmbGFnfGVufDB8fDB8fHwy&auto=format&fit=crop&q=60&w=500",
     place_image:
       "https://plus.unsplash.com/premium_photo-1754265633089-580f5867b801?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8c2FudGlhZ28lMjBiZXJuYWIlQzMlQTl1fGVufDB8MHwwfHx8MA%3D%3D",
     traditions: [
@@ -376,10 +376,10 @@ export const COUNTRIES: Countries = [
     ],
   },
   {
-    id: "12",
+    id: "11",
     country: "Germany",
     capital: "Berlin",
-    flag: "https://upload.wikimedia.org/wikipedia/en/b/ba/Flag_of_Germany.svg",
+    flag: "https://images.unsplash.com/photo-1676286155310-1f7f39a85ed9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Z2VybWFueSUyMGZsYWd8ZW58MHx8MHx8fDI%3D&auto=format&fit=crop&q=60&w=500",
     place_image:
       "https://images.unsplash.com/photo-1501952476817-d7ae22e8ee4e?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzYWNlbnR8N3x8Z2VybWFueXxlbnwwfDB8fHww",
     traditions: [
@@ -411,10 +411,10 @@ export const COUNTRIES: Countries = [
     ],
   },
   {
-    id: "13",
+    id: "12",
     country: "United States",
      capital: "Washington, D.C.",
-    flag: "https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg",
+    flag: "https://images.unsplash.com/photo-1590638302397-73c58ddba466?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8dXNhJTIwZmxhZ3xlbnwwfHwwfHx8Mg%3D%3D&auto=format&fit=crop&q=60&w=500",
     place_image:
       "https://images.unsplash.com/photo-1633864528487-514c23f2b184?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHVuaXRlZCUyMHN0YXRlc3xlbnwwfDB8MHx8fDA%3D",
     traditions: [
@@ -446,10 +446,10 @@ export const COUNTRIES: Countries = [
     ],
   },
   {
-    id: "14",
+    id: "13",
     country: "Turkey",
      capital: "Ankara",
-    flag: "https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg",
+    flag: "https://images.unsplash.com/photo-1683356176725-19d6d172aa5d?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHR1cmtleSUyMGZsYWd8ZW58MHx8MHx8fDI%3D&auto=format&fit=crop&q=60&w=500",
     place_image:
       "https://images.unsplash.com/photo-1623621534850-d325a1980c7e?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHR1cmtleXxlbnwwfDB8MHx8fDA%3D",
     traditions: [
@@ -481,10 +481,10 @@ export const COUNTRIES: Countries = [
     ],
   },
   {
-    id: "15",
+    id: "14",
     country: "Australia",
       capital: "Canberra",
-    flag: "https://upload.wikimedia.org/wikipedia/en/b/b9/Flag_of_Australia.svg",
+    flag: "https://images.unsplash.com/photo-1680173764109-bfe1a34a1877?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGF1c3RyYWxpYWZsYWd8ZW58MHx8MHx8fDI%3D&auto=format&fit=crop&q=60&w=500",
     place_image:
       "https://images.unsplash.com/photo-1548296404-93c7694b2f91?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGF1c3RyYWxpYXxlbnwwfDB8MHx8fDA%3D",
     traditions: [

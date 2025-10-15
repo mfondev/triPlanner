@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import { Colors } from "@/constants/theme";
+import { Asset, useAssets } from "expo-asset";
 
 const DATA = [
   {
@@ -36,6 +37,18 @@ const DATA = [
 ];
 
 export default function Category() {
+  const [assets, error] = useAssets(DATA.map((image) => image.image));
+  // console.log(assets);
+  //   {
+  //   name: 'nature.jpg',
+  //   type: 'jpg',
+  //   hash: 'f123abcd...',
+  //   uri: 'https://example.com/path/to/asset',
+  //   localUri: 'file:///data/.../nature.jpg', // after loading
+  //   width: 1024,
+  //   height: 768,
+  // }
+
   return (
     <View style={styles.container}>
       <Text
@@ -57,12 +70,19 @@ export default function Category() {
           paddingTop: 10,
         }}
       >
-        {DATA.map((item) => (
-          <View key={item.id} style={styles.categoryItem}>
-            <Image style={styles.categoryImage} source={item.image} />
-            <Text style={styles.categoryText}>{item.title}</Text>
-          </View>
-        ))}
+        {assets ? (
+          DATA.map((item, index) => (
+            <View key={item.id} style={styles.categoryItem}>
+              <Image
+                style={styles.categoryImage}
+                source={{ uri: assets[index].localUri || assets[index].uri }}
+              />
+              <Text style={styles.categoryText}>{item.title}</Text>
+            </View>
+          ))
+        ) : (
+          <Text>Loading...</Text>
+        )}
       </ScrollView>
     </View>
   );

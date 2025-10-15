@@ -43,14 +43,24 @@
           }
         }
       ],
-      "expo-font",
-      ["expo-build-properties",{
-        "ios": {
-          "useFrameworks": "static"
+        [
+        "expo-asset",
+        {
+          "assets": ["path/to/file.png", "path/to/directory"]
         }
-      }],
+      ],
+      "expo-font",
+      [
+        "expo-build-properties",
+        {
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ],
       "@react-native-firebase/app",
-      "@react-native-firebase/auth"
+      "@react-native-firebase/auth",
+      "expo-asset"
     ],
     "experiments": {
       "typedRoutes": true,

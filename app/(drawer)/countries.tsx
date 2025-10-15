@@ -81,7 +81,9 @@ export default function Countries() {
                   justifyContent: "center",
                 }}
               >
-                <SvgUri source={{ uri: item.flag }} width={25} height={25} />
+                {/* <SvgUri source={{ uri: item.flag }} width={25} height={25} />
+                 */}
+                 <Image source={{uri: item.flag}} width={25} height={25}/>
               </View>
               <Text
                 style={{
