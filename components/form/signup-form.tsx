@@ -7,16 +7,17 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Colors } from "@/constants/theme";
-import { useRouter } from "expo-router";
-import { Link } from "expo-router";
+import { useRouter, Link } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { signupUser } from "@/utils/auth";
 import { UserProps } from "@/types/types";
+import { createUser } from "@/utils/auth";
 
 export default function SignupForm() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
+
   const [credentials, setCredentials] = useState({
     fullName: "",
     email: "",
@@ -32,8 +33,8 @@ export default function SignupForm() {
     phoneNumber,
     country,
   }: UserProps) => {
-    setCredentials((prevState) => ({
-      ...prevState,
+    setCredentials((prev) => ({
+      ...prev,
       fullName,
       email,
       password,
@@ -42,9 +43,39 @@ export default function SignupForm() {
     }));
   };
 
-  const handleSignup = () => {
-    signupUser(credentials)
+const handleSubmit = async () => {
+  // basic validation
+  if (
+    !credentials.fullName ||
+    !credentials.email ||
+    !credentials.password ||
+    !credentials.phoneNumber ||
+    !credentials.country
+  ) {
+    setError("Please fill in all fields.");
+    return; // stop execution
   }
+
+  try {
+    setError(""); // clear any previous errors
+
+    const token = await createUser(
+      credentials.fullName,
+      credentials.email,
+      credentials.password,
+      credentials.phoneNumber,
+      credentials.country
+    );
+
+    console.log("User created successfully, token:", token);
+    router.push("/(auth)");
+  } catch (error) {
+    console.error("Error creating user:", error);
+    setError("Something went wrong. Please try again.");
+  }
+};
+
+
 
   return (
     <View style={styles.container}>
@@ -134,15 +165,17 @@ export default function SignupForm() {
             }}
           />
         </View>
-        <Pressable style={styles.button}>
+        {error ? <Text style={styles.errorText}>{error}</Text> : null}
+
+        <Pressable style={styles.button} onPress={handleSubmit}>
           <Text style={styles.buttonText}>Create account</Text>
         </Pressable>
       </View>
       <Text style={styles.accountContainer}>
         Already have an account?{" "}
-        <Link href="/(auth)" style={styles.loginText}>
-          Log in Now
-        </Link>
+        <TouchableOpacity >
+          <Text style={styles.loginText}>Log in Now</Text>
+        </TouchableOpacity>
       </Text>
     </View>
   );
@@ -226,4 +259,12 @@ const styles = StyleSheet.create({
     color: Colors.primary,
     fontFamily: "Poppins_400Regular",
   },
+  errorText: {
+  color: "red",
+  fontSize: 12,
+  marginBottom: 10,
+  textAlign: "center",
+  fontFamily: "Poppins_400Regular",
+},
+
 });
