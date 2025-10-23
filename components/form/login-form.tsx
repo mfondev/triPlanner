@@ -4,6 +4,7 @@ import {
   View,
   TextInput,
   Pressable,
+  Alert,
   Image,
 } from "react-native";
 import React from "react";
@@ -40,16 +41,26 @@ export default function LoginForm() {
         setError("Fields cannot be empty");
         return;
       }
+
       const token = await LoginUser(credentials);
+
       if (!token.success) {
         setError(token.error?.message || "Invalid credentials");
         return;
       }
+      console.log(token.data?.session?.access_token);
+
+      localStorage.setItem(
+        "isLoggedIn",
+        token.data?.session?.access_token ?? ""
+      );
+      Alert.alert("Login Successful");
       router.push("/(drawer)/(home)");
     } catch (error) {
-      setError("Please check Login credentials");
+      setError("Please check login credentials");
     }
   };
+
   return (
     <View style={styles.container}>
       <Text style={styles.loginText}>Login</Text>
@@ -57,23 +68,30 @@ export default function LoginForm() {
         <Text style={styles.label}>E-mail</Text>
         <TextInput
           placeholder="email@address.com"
-          autoCapitalize={"none"}
+          autoCapitalize="none"
+          autoComplete="email"
+          textContentType="username"
+          keyboardType="email-address"
           style={styles.input}
           value={credentials.email}
           onChangeText={(text) =>
             changeCredential({ email: text, password: credentials.password })
           }
         />
+
         <Text style={styles.label}>Password</Text>
         <TextInput
           placeholder="Enter your password"
           secureTextEntry
+          autoComplete="password"
+          textContentType="password"
           style={styles.input}
           value={credentials.password}
           onChangeText={(text) =>
             changeCredential({ email: credentials.email, password: text })
           }
         />
+
         <View style={styles.rememberContainer}>
           <Text style={styles.rememberText}>Remember Me</Text>
           <Link href="/forgot-password" style={styles.forgotText}>

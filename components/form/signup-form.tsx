@@ -44,39 +44,32 @@ export default function SignupForm() {
       country,
     }));
   };
-const handleSubmit = async () => {
-  if (
-    !credentials.fullName ||
-    !credentials.email ||
-    !credentials.password ||
-    !credentials.phoneNumber ||
-    !credentials.country
-  ) {
-    setError("Please fill in all fields.");
-    return;
-  }
+  const handleSubmit = async () => {
+    if (
+      !credentials.fullName ||
+      !credentials.email ||
+      !credentials.password ||
+      !credentials.phoneNumber ||
+      !credentials.country
+    ) {
+      setError("Please fill in all fields.");
+      return;
+    }
 
-  try {
-    setError(""); // clear any previous errors
-
-    const token = await createUser(credentials);
-
-    console.log("User created successfully:", token);
-
-    // ✅ Show a confirmation message to the user
-    Alert.alert(
-      "Check your email",
-      "We’ve sent you a confirmation link. Please verify your email before signing in."
-    );
-
-    // Optionally redirect them after showing the alert
-    router.push("/(auth)");
-  } catch (error) {
-    console.error("Error creating user:", error);
-    setError("Something went wrong. Please try again.");
-  }
-};
-
+    try {
+      setError("");
+      const token = await createUser(credentials);
+      console.log("User created successfully:", token);
+      Alert.alert(
+        "Check your mail",
+        "We’ve sent you a confirmation link. Please verify your email before signing in."
+      );
+      router.push("/(auth)");
+    } catch (error) {
+      console.error("Error creating user:", error);
+      setError("Something went wrong. Please try again.");
+    }
+  };
 
   return (
     <View style={styles.container}>

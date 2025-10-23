@@ -27,17 +27,17 @@ export default function RootLayout() {
   if (!loaded) {
     return null;
   }
-  const isLoggedIn = false;
+  const authToken = localStorage.getItem("isLoggedIn");
+  const isLoggedIn = !!authToken; 
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <StatusBar barStyle="dark-content" />
       <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Protected guard={!isLoggedIn}>
           <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+        <Stack.Protected guard={isLoggedIn}>
+          <Stack.Screen name="(drawer)" />
         </Stack.Protected>
-        <Stack.Protected guard={!isLoggedIn}>
-        <Stack.Screen name="(drawer)" />
-      </Stack.Protected>
       </Stack>
     </GestureHandlerRootView>
   );
