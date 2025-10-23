@@ -43,10 +43,13 @@
           }
         }
       ],
-        [
+      [
         "expo-asset",
         {
-          "assets": ["path/to/file.png", "path/to/directory"]
+          "assets": [
+            "path/to/file.png",
+            "path/to/directory"
+          ]
         }
       ],
       "expo-font",
@@ -60,7 +63,8 @@
       ],
       "@react-native-firebase/app",
       "@react-native-firebase/auth",
-      "expo-asset"
+      "expo-asset",
+      "expo-sqlite"
     ],
     "experiments": {
       "typedRoutes": true,

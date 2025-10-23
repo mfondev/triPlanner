@@ -4,8 +4,10 @@ import {
   Text,
   TextInput,
   View,
+  Alert,
   TouchableOpacity,
 } from "react-native";
+
 import { Colors } from "@/constants/theme";
 import { useRouter, Link } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
@@ -18,7 +20,7 @@ export default function SignupForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
 
-  const [credentials, setCredentials] = useState({
+  const [credentials, setCredentials] = useState<UserProps>({
     fullName: "",
     email: "",
     password: "",
@@ -42,9 +44,7 @@ export default function SignupForm() {
       country,
     }));
   };
-
 const handleSubmit = async () => {
-  // basic validation
   if (
     !credentials.fullName ||
     !credentials.email ||
@@ -53,28 +53,29 @@ const handleSubmit = async () => {
     !credentials.country
   ) {
     setError("Please fill in all fields.");
-    return; // stop execution
+    return;
   }
 
   try {
     setError(""); // clear any previous errors
 
-    const token = await createUser(
-      credentials.fullName,
-      credentials.email,
-      credentials.password,
-      credentials.phoneNumber,
-      credentials.country
+    const token = await createUser(credentials);
+
+    console.log("User created successfully:", token);
+
+    // ✅ Show a confirmation message to the user
+    Alert.alert(
+      "Check your email",
+      "We’ve sent you a confirmation link. Please verify your email before signing in."
     );
 
-    console.log("User created successfully, token:", token);
+    // Optionally redirect them after showing the alert
     router.push("/(auth)");
   } catch (error) {
     console.error("Error creating user:", error);
     setError("Something went wrong. Please try again.");
   }
 };
-
 
 
   return (
@@ -130,6 +131,7 @@ const handleSubmit = async () => {
               onChangeText={(text) => {
                 changeCredentials({ ...credentials, password: text });
               }}
+              textContentType="newPassword"
             />
             <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
               <Ionicons
@@ -173,7 +175,7 @@ const handleSubmit = async () => {
       </View>
       <Text style={styles.accountContainer}>
         Already have an account?{" "}
-        <TouchableOpacity >
+        <TouchableOpacity>
           <Text style={styles.loginText}>Log in Now</Text>
         </TouchableOpacity>
       </Text>
@@ -260,11 +262,10 @@ const styles = StyleSheet.create({
     fontFamily: "Poppins_400Regular",
   },
   errorText: {
-  color: "red",
-  fontSize: 12,
-  marginBottom: 10,
-  textAlign: "center",
-  fontFamily: "Poppins_400Regular",
-},
-
+    color: "red",
+    fontSize: 12,
+    marginBottom: 10,
+    textAlign: "center",
+    fontFamily: "Poppins_400Regular",
+  },
 });

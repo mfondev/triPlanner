@@ -10,23 +10,69 @@ import React from "react";
 import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import { Colors } from "@/constants/theme";
 import { Link, useRouter } from "expo-router";
+import { LoginProp, LoginUser } from "@/utils/auth";
+import { useState } from "react";
 
 export default function LoginForm() {
   const router = useRouter();
-  const handleLogin = () => {
-    router.navigate("/(drawer)");
+  const [error, setError] = useState("");
+  const [credentials, setCredentials] = useState<LoginProp>({
+    email: "",
+    password: "",
+  });
+
+  type ChangeCredentialFn = (creds: LoginProp) => void;
+
+  const changeCredential: ChangeCredentialFn = ({
+    email,
+    password,
+  }: LoginProp) => {
+    setCredentials((prevState: LoginProp) => ({
+      ...prevState,
+      email: email,
+      password: password,
+    }));
+  };
+
+  const handleLogin = async () => {
+    try {
+      if (!credentials.email || !credentials.password) {
+        setError("Fields cannot be empty");
+        return;
+      }
+      const token = await LoginUser(credentials);
+      if (!token.success) {
+        setError(token.error?.message || "Invalid credentials");
+        return;
+      }
+      router.push("/(drawer)/(home)");
+    } catch (error) {
+      setError("Please check Login credentials");
+    }
   };
   return (
     <View style={styles.container}>
       <Text style={styles.loginText}>Login</Text>
       <View>
         <Text style={styles.label}>E-mail</Text>
-        <TextInput placeholder="Enter your email" style={styles.input} />
+        <TextInput
+          placeholder="email@address.com"
+          autoCapitalize={"none"}
+          style={styles.input}
+          value={credentials.email}
+          onChangeText={(text) =>
+            changeCredential({ email: text, password: credentials.password })
+          }
+        />
         <Text style={styles.label}>Password</Text>
         <TextInput
           placeholder="Enter your password"
           secureTextEntry
           style={styles.input}
+          value={credentials.password}
+          onChangeText={(text) =>
+            changeCredential({ email: credentials.email, password: text })
+          }
         />
         <View style={styles.rememberContainer}>
           <Text style={styles.rememberText}>Remember Me</Text>
@@ -34,6 +80,8 @@ export default function LoginForm() {
             Forgot Password?
           </Link>
         </View>
+        {error ? <Text style={styles.errorText}>{error}</Text> : null}
+
         <Pressable style={styles.button} onPress={handleLogin}>
           <Text style={styles.buttonText}>Sign in</Text>
         </Pressable>
@@ -164,6 +212,13 @@ const styles = StyleSheet.create({
   },
   createText: {
     color: Colors.primary,
+    fontFamily: "Poppins_400Regular",
+  },
+  errorText: {
+    color: "red",
+    fontSize: 12,
+    marginBottom: 10,
+    textAlign: "center",
     fontFamily: "Poppins_400Regular",
   },
 });
