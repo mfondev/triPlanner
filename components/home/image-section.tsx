@@ -5,7 +5,7 @@ import { useAssets } from "expo-asset";
 
 export default function ImageSection() {
   const [assets,error] = useAssets([require("@/assets/images/nigeria.jpg")])
-  console.log(assets);
+  // console.log(assets);
   
   if (!assets) {
     return (

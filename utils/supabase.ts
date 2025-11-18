@@ -14,5 +14,5 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   },
 });
 
-console.log(supabase);
+// console.log(supabase);
 

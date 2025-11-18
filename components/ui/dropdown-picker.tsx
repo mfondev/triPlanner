@@ -23,9 +23,21 @@ export default function DropdownPicker({
     item?.map((item) => ({
       label: item,
       value: item,
-    }))
+    }))  ?? []
   );
 
+   useEffect(() => {
+    setItems(
+      item?.map((item) => ({
+        label: item,
+        value: item,
+      })) ?? []
+    );
+  }, [item]);
+
+  
+
+console.log(value);
 
   return (
     <View style={[styles.inputWrapper, { zIndex: 1000 }]}>

@@ -59,7 +59,7 @@ export default function SignupForm() {
     try {
       setError("");
       const token = await createUser(credentials);
-      console.log("User created successfully:", token);
+      // console.log("User created successfully:", token);
       Alert.alert(
         "Check your mail",
         "We’ve sent you a confirmation link. Please verify your email before signing in."

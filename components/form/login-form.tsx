@@ -22,19 +22,6 @@ export default function LoginForm() {
     password: "",
   });
 
-  type ChangeCredentialFn = (creds: LoginProp) => void;
-
-  const changeCredential: ChangeCredentialFn = ({
-    email,
-    password,
-  }: LoginProp) => {
-    setCredentials((prevState: LoginProp) => ({
-      ...prevState,
-      email: email,
-      password: password,
-    }));
-  };
-
   const handleLogin = async () => {
     try {
       if (!credentials.email || !credentials.password) {
@@ -48,7 +35,7 @@ export default function LoginForm() {
         setError(token.error?.message || "Invalid credentials");
         return;
       }
-      console.log(token.data?.session?.access_token);
+      // console.log(token.data?.session?.access_token);
 
       localStorage.setItem(
         "isLoggedIn",
@@ -70,12 +57,12 @@ export default function LoginForm() {
           placeholder="email@address.com"
           autoCapitalize="none"
           autoComplete="email"
-          textContentType="username"
+          textContentType="emailAddress"
           keyboardType="email-address"
           style={styles.input}
           value={credentials.email}
           onChangeText={(text) =>
-            changeCredential({ email: text, password: credentials.password })
+            setCredentials((prev) => ({ ...prev, email: text }))
           }
         />
 
@@ -88,7 +75,7 @@ export default function LoginForm() {
           style={styles.input}
           value={credentials.password}
           onChangeText={(text) =>
-            changeCredential({ email: credentials.email, password: text })
+            setCredentials((prev) => ({ ...prev, password: text }))
           }
         />
 

@@ -15,8 +15,31 @@ import DropdownPicker from "@/components/ui/dropdown-picker";
 import DatePicker from "@/components/ui/date-picker";
 import { COUNTRIES, flightClass } from "@/utils/data";
 import { router } from "expo-router";
+import { destinations } from "@/utils/countries";
+import { useEffect } from "react";
+import { flights } from "@/utils/countries";
 
 export default function Search() {
+  const [from, setFrom] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchDestinations = async () => {
+      try {
+        setLoading(true);
+        const data = await destinations();
+        setFrom(data?.map((d) => d.departure_location) ?? []);
+      } catch (err) {
+        setError("Failed to fetch destinations");
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchDestinations();
+  }, []);
 
   const countries = COUNTRIES.map((country) => country.capital);
   const flightClasses = flightClass.map((classes) => classes.flightClass);
@@ -46,7 +69,7 @@ export default function Search() {
           <DropdownPicker
             label="From"
             placeholder="Enter destination"
-            item={countries}
+            item={from}
             availability
           />
         </View>
@@ -54,7 +77,7 @@ export default function Search() {
           <DropdownPicker
             label="To"
             placeholder="Enter destination"
-            item={countries}
+            item={from}
             availability
           />
         </View>

@@ -1,4 +1,3 @@
-
 import { supabase } from "./supabase";
 import { UserProps } from "@/types/types";
 
@@ -41,4 +40,14 @@ export const LoginUser = async ({ email, password }: LoginProp) => {
 
   // console.log("Login successful:", data);
   return { success: true, data };
+};
+
+export const getUser = async () => {
+  const { data, error } = await supabase.auth.getUser();
+
+  if (error) {
+    return;
+  } else {
+    return data;
+  }
 };

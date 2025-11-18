@@ -6,11 +6,13 @@ import {
   Image,
   FlatList,
   TouchableOpacity,
+  Pressable,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
 import { COUNTRIES } from "@/utils/data";
 import { Colors } from "@/constants/theme";
+import { router } from "expo-router";
 
 function getRandomOrigin(destId: string) {
   const others = COUNTRIES.filter((c) => c.id !== destId);
@@ -29,7 +31,15 @@ export default function SearchHistory() {
       renderItem={({ item }) => {
         const origin = getRandomOrigin(item.id);
         return (
-          <View style={styles.card}>
+          <Pressable
+            style={styles.card}
+            onPress={() => {
+              router.navigate({
+                pathname: "/search/search-history/search-result/[destination]",
+                params: { destination: item.id },
+              });
+            }}
+          >
             <Image source={{ uri: item.place_image }} style={styles.image} />
             <TouchableOpacity style={styles.favoriteBtn}>
               <Ionicons name="heart-outline" size={18} color={Colors.primary} />
@@ -50,7 +60,7 @@ export default function SearchHistory() {
                 </Text>
               </View>
             </LinearGradient>
-          </View>
+          </Pressable>
         );
       }}
     />
@@ -60,7 +70,7 @@ export default function SearchHistory() {
 const styles = StyleSheet.create({
   list: {
     padding: 16,
-    backgroundColor: Colors.gray
+    backgroundColor: Colors.gray,
   },
   card: {
     marginBottom: 16,

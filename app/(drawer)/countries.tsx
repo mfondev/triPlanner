@@ -1,8 +1,7 @@
 import { Colors } from "@/constants/theme";
-import { Link, router } from "expo-router";
+import {router } from "expo-router";
 import { COUNTRIES } from "@/utils/data";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
-import SvgUri from "expo-svg-uri";
 import {
   StyleSheet,
   TextInput,

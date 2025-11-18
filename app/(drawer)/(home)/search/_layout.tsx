@@ -11,31 +11,36 @@ export default function _layout() {
       screenOptions={{
         headerLeft: () => <DrawerIcon />,
         headerRight: () => (
-          <TouchableOpacity style={{ marginRight: 20 }}>
+          <TouchableOpacity style={{ marginRight: 5 }}>
             <AvatarIcon width={40} height={35} />
           </TouchableOpacity>
         ),
-         headerBlurEffect: 'none',
+        headerBlurEffect: "none",
         headerTitle: "",
         headerShadowVisible: false,
         headerStyle: { backgroundColor: Colors.gray },
       }}
     >
-      <Stack.Screen name="index"  />
-      <Stack.Screen 
+      <Stack.Screen name="index" />
+      <Stack.Screen
         name="search-history"
-        options={({ navigation }) => ({
-          headerLeft: () => (
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}
-              style={{ marginLeft: 0, flexDirection: 'row', alignItems: 'center' }}
-            >
-              <Ionicons name="chevron-back" size={20} color={Colors.accent} />
-              <Text>search-history</Text>
-            </TouchableOpacity>
-          ),
-          headerRight: () => null,
-        })}
+        options={{ headerShown: false }}
+        // options={({ navigation }) => ({
+        //   headerLeft: () => (
+        //     <TouchableOpacity
+        //       onPress={() => navigation.goBack()}
+        //       style={{
+        //         marginLeft: 0,
+        //         flexDirection: "row",
+        //         alignItems: "center",
+        //       }}
+        //     >
+        //       <Ionicons name="chevron-back" size={20} color={Colors.accent} />
+        //       <Text>search-history</Text>
+        //     </TouchableOpacity>
+        //   ),
+        //   headerRight: () => null,
+        // })}
       />
     </Stack>
   );

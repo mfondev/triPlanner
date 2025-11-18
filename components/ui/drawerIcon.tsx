@@ -1,4 +1,4 @@
-import { StyleSheet, Pressable } from "react-native";
+import { StyleSheet, Pressable , View} from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation, DrawerActions } from "@react-navigation/native";
 import Entypo from "@expo/vector-icons/Entypo";

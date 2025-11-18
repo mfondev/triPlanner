@@ -1,35 +1,78 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Image,ActivityIndicator } from "react-native";
 import React from "react";
 import { Colors } from "@/constants/theme";
+import { getUser } from "@/utils/auth";
+import { useEffect } from "react";
+
 
 export default function Account() {
   const logOut = () => {
     // localStorage.removeItem("isLoggedIn");
   };
+  const [user, setUser] = React.useState<any>(null);
+  const [loading, setLoading] = React.useState<boolean>(true);
+
+  useEffect(() => {
+    handleGetUser();
+  }, []);
+
+  const handleGetUser = async () => {
+    setLoading(true);
+    const user = await getUser();
+    setUser(user?.user);
+    setLoading(false);
+    // console.log(user);
+  };
+
+
+
+
+  if (loading) {
+    return (
+      <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>
+        <ActivityIndicator size="large" color={Colors.primary} />
+      </View>
+    );
+  }
+  let role = user?.role;
+
+  if (role === 'authenticated') {
+    role = 'User';
+  }
+
+
+  
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Account</Text>
-
+      {/* <Text style={styles.title}>Account</Text> */}
       <View style={styles.imageContainer}>
         <Image
           source={require("@/assets/images/spain.jpg")}
           style={styles.profileImage}
         />
-        <Text style={styles.name}>Gideon Atauba</Text>
+        <Text style={styles.name}>{user?.user_metadata?.fullName}</Text>
       </View>
 
       <View style={styles.infoContainer}>
         <Text style={styles.label}>Full Name</Text>
-        <Text style={styles.value}>Gideon Atauba</Text>
+        <Text style={styles.value}>{user?.user_metadata?.fullName}</Text>
 
         <Text style={styles.label}>Email</Text>
-        <Text style={styles.value}>victoria@example.com</Text>
+        <Text style={styles.value}>{user?.email}</Text>
 
         <Text style={styles.label}>Phone Number</Text>
         <Text style={styles.value}>+234 812 345 6789</Text>
 
         <Text style={styles.label}>Country</Text>
-        <Text style={styles.value}>Nigeria</Text>
+        <Text style={styles.value}>{user?.user_metadata?.country}</Text>
+
+        <Text style={styles.label}>Member Since</Text>
+        <Text style={styles.value}>
+          {new Date(user?.created_at).toLocaleDateString()}
+        </Text>
+
+        <Text style={styles.label}>Role</Text>
+        <Text style={styles.value}>{role}</Text>
       </View>
 
       {/* Logout Button */}
