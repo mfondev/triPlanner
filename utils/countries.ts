@@ -21,3 +21,15 @@ export async function destinations() {
     return data;
   }
 }
+
+export async function arrivals() {
+  const { data, error } = await supabase
+    .from("countries")
+    .select("arrival_location", );
+  if (error) {
+    console.log("error:", error);
+    return;
+  } else {
+    return data;
+  }
+}

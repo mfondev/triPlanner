@@ -5,6 +5,7 @@ export const Colors = {
   gray: '#f7f7f7',
   grey: '#bcbcbcff',
   accent: '#807e7eff',
-  tabBg: '#fefffe'
+  tabBg: '#fefffe',
+  green: "#1a411bff"
 };
 

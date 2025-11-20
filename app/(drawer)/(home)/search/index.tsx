@@ -10,21 +10,38 @@ import {
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Colors } from "@/constants/theme";
-import { Link } from "expo-router";
 import DropdownPicker from "@/components/ui/dropdown-picker";
 import DatePicker from "@/components/ui/date-picker";
 import { COUNTRIES, flightClass } from "@/utils/data";
 import { router } from "expo-router";
-import { destinations } from "@/utils/countries";
+import { destinations,arrivals } from "@/utils/countries";
 import { useEffect } from "react";
-import { flights } from "@/utils/countries";
+
 
 export default function Search() {
   const [from, setFrom] = useState<string[]>([]);
+  const [to, setTo] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedFrom, setSelectedFrom] = useState<string | null>(null);
+  const [selectedTo, setSelectedTo] = useState<string | null>(null);
+  const [selectedClass, setSelectedClass] = useState<string | null>(null);
+  const [departureDate, setDepartureDate] = useState<Date | null>(null);
+  const [returnDate, setReturnDate] = useState<Date | null>(null);
 
   useEffect(() => {
+    const fetchArrivals = async () => {
+      try {
+        setLoading(true);
+        const data = await arrivals();
+        setTo(data?.map((d) => d.arrival_location) ?? []);
+      } catch (err) {
+        setError("Failed to fetch arrivals");
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
     const fetchDestinations = async () => {
       try {
         setLoading(true);
@@ -39,17 +56,26 @@ export default function Search() {
     };
 
     fetchDestinations();
+    fetchArrivals();
   }, []);
 
-  const countries = COUNTRIES.map((country) => country.capital);
   const flightClasses = flightClass.map((classes) => classes.flightClass);
 
   const handleNavigate = () => {
+    if (!selectedFrom || !selectedTo) {
+      alert("Please select both 'From' and 'To' locations.");
+      return;
+    }
+    if (!selectedClass) {
+      alert("Please select a flight class.");
+      return;
+    }
     router.push({
       pathname: "/search/search-history",
-      params: { userId: "abc-123", username: "JohnDoe" },
+      params: { from: selectedFrom, to: selectedTo, class: selectedClass, },
     });
   };
+  // console.log(selectedFrom);
 
   return (
     <View style={styles.container}>
@@ -70,6 +96,8 @@ export default function Search() {
             label="From"
             placeholder="Enter destination"
             item={from}
+            dropDownValue={selectedFrom}
+            onChangeValue={setSelectedFrom}
             availability
           />
         </View>
@@ -77,8 +105,10 @@ export default function Search() {
           <DropdownPicker
             label="To"
             placeholder="Enter destination"
-            item={from}
+            item={to}
             availability
+            dropDownValue={selectedTo}
+            onChangeValue={setSelectedTo}
           />
         </View>
         <DatePicker label={"Departure"} placeholder="Select departure date" />
@@ -88,6 +118,8 @@ export default function Search() {
             label="Class"
             placeholder="Select Class"
             item={flightClasses}
+            dropDownValue={selectedClass}
+            onChangeValue={setSelectedClass}
           />
         </View>
 

@@ -8,6 +8,8 @@ type Props = {
   label: string;
   placeholder: string;
   item: string[];
+  dropDownValue?: string | null;
+  onChangeValue?: (value: string | null) => void;
   availability?: boolean;
 };
 
@@ -15,29 +17,23 @@ export default function DropdownPicker({
   label,
   placeholder,
   item,
+  dropDownValue,
+  onChangeValue,
   availability,
 }: Props) {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
-  const [items, setItems] = useState(
-    item?.map((item) => ({
-      label: item,
-      value: item,
-    }))  ?? []
-  );
-
-   useEffect(() => {
-    setItems(
-      item?.map((item) => ({
-        label: item,
-        value: item,
-      })) ?? []
-    );
-  }, [item]);
-
+  const [value, setValue] = useState<string | null>(dropDownValue ?? null);
   
+  // Derive items from prop
+  const items = item?.map((item) => ({
+    label: item,
+    value: item,
+  })) ?? [];
 
-console.log(value);
+  // Sync internal value with external value
+  useEffect(() => {
+    setValue(dropDownValue ?? null);
+  }, [dropDownValue]);
 
   return (
     <View style={[styles.inputWrapper, { zIndex: 1000 }]}>
@@ -48,7 +44,11 @@ console.log(value);
         items={items}
         setOpen={setOpen}
         setValue={setValue}
-        setItems={setItems}
+        setItems={() => {}} // Not needed since items is derived
+        onChangeValue={(val) => {
+          onChangeValue?.(val); // Notify parent
+        }}
+        multiple={false}
         placeholder={placeholder}
         placeholderStyle={{
           color: Colors.grey,
@@ -62,7 +62,6 @@ console.log(value);
         }}
         dropDownContainerStyle={styles.dropdownContainer}
         zIndex={2000}
-        // zIndexInverse={1000}
         ArrowDownIconComponent={({ style }) => (
           <Ionicons name="chevron-down" size={20} color={Colors.grey} />
         )}
