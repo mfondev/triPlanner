@@ -11,14 +11,11 @@ import {
 } from "react-native";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import { COUNTRIES } from "@/utils/data";
 import { Colors } from "@/constants/theme";
 import EvilIcons from "@expo/vector-icons/EvilIcons";
-import Traditions from "@/components/traditions";
-import { Asset } from "expo-asset";
-import { useState, useEffect } from "react";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
+import DestinationDetails from "@/components/destination/destinationDetails";
 
 export default function CountryScreen() {
   const { destination, departure, price, image, duration } =
@@ -55,7 +52,6 @@ export default function CountryScreen() {
             backgroundColor: "white",
             borderRadius: 10,
             paddingTop: 16,
-            paddingBottom: 16,
             overflow: "hidden",
           }}
         >
@@ -73,11 +69,9 @@ export default function CountryScreen() {
             <Text
               style={{
                 color: "black",
-                fontSize: 16,
-                fontWeight: "bold",
+                fontSize: 18,
                 textAlign: "center",
-                fontFamily: "Poppins_600SemiBold",
-                
+                fontFamily: "Poppins_400Regular",
               }}
             >
               {departure} – {destination}
@@ -86,26 +80,25 @@ export default function CountryScreen() {
           <View
             style={{
               flexDirection: "row",
-              justifyContent: "space-around",
+              justifyContent: "space-between",
               alignItems: "center",
-               borderBottomWidth: 1,
-              borderBottomColor: Colors.lightGray,
+              paddingHorizontal: 50,
             }}
           >
-            <View style={{ alignItems: "center", gap: 0, paddingVertical: 8,  }}>
+            <View style={{ alignItems: "center", gap: 0, paddingVertical: 0 }}>
               <View
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
-                  gap: 6,
+                  gap: 8,
                 }}
               >
                 <AntDesign
                   name="clock-circle"
-                  size={14}
+                  size={18}
                   color={Colors.primary}
                 />
-                <Text style={{ fontSize: 14, color: Colors.secondary }}>
+                <Text style={{ fontSize: 16, color: Colors.secondary , fontFamily: "Poppins_600SemiBold"}}>
                   Duration
                 </Text>
               </View>
@@ -113,15 +106,14 @@ export default function CountryScreen() {
                 style={{
                   fontSize: 16,
                   fontWeight: "600",
-                  color: Colors.secondary,
+                  color: Colors.accent,
                   textAlign: "center",
-                  fontFamily: "Poppins_400Regular",
+                  fontFamily: "Poppins_600SemiBold",
                 }}
               >
                 {duration}
               </Text>
             </View>
-
             <View
               style={{
                 width: 1,
@@ -129,13 +121,12 @@ export default function CountryScreen() {
                 backgroundColor: Colors.lightGray,
               }}
             />
-
             <View style={{ alignItems: "center", gap: 0, paddingVertical: 8 }}>
               <View
-                style={{ flexDirection: "row", alignItems: "center", gap: 6 }}
+                style={{ flexDirection: "row", alignItems: "center", gap: 8 }}
               >
-                <FontAwesome name="money" size={14} color={Colors.primary} />
-                <Text style={{ fontSize: 14, color: Colors.secondary }}>
+                <FontAwesome name="money" size={18} color={Colors.primary} />
+                <Text style={{ fontSize: 16, color: Colors.secondary ,fontFamily: "Poppins_600SemiBold"}}>
                   Price
                 </Text>
               </View>
@@ -148,13 +139,13 @@ export default function CountryScreen() {
                   fontFamily: "Poppins_600SemiBold",
                 }}
               >
-              {price}{" "}$
+                {price} $
               </Text>
             </View>
           </View>
         </View>
       </View>
-      {/* ))} */}
+      <DestinationDetails />
     </ScrollView>
   );
 }

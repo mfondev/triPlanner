@@ -10,10 +10,36 @@ import { Colors } from "@/constants/theme";
 import SubmitButton from "../ui/submit-button";
 import DefaultInput from "../ui/input";
 import DropdownPicker from "../ui/dropdown-picker";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 export default function PassengerForm() {
   return (
     <ScrollView style={styles.container}>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          gap: 10,
+          justifyContent: "center",
+          marginBottom: 10,
+        }}
+      >
+        <MaterialCommunityIcons
+          name="account-details"
+          size={18}
+          color={Colors.primary}
+        />
+        <Text
+          style={{
+            fontSize: 18,
+            fontWeight: "600",
+            marginBottom: 5,
+            fontFamily: "Poppins_600SemiBold",
+          }}
+        >
+          Passenger Details
+        </Text>
+      </View>
       <View>
         <DefaultInput label="Fullname" placeholder="Enter Fullname" bgColor />
         <DefaultInput label="Email" placeholder="Enter your email" bgColor />
@@ -53,7 +79,7 @@ export default function PassengerForm() {
 const styles = StyleSheet.create({
   container: {
     padding: 22,
-    paddingVertical: 40,
+    paddingVertical: 10,
     gap: 23,
   },
 });

@@ -6,6 +6,7 @@ export const Colors = {
   grey: '#bcbcbcff',
   accent: '#807e7eff',
   tabBg: '#fefffe',
-  green: "#1a411bff"
+  green: "#326833ff",
+  totalGray: '#deddddff'
 };
 
