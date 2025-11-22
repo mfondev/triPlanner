@@ -1,5 +1,7 @@
 import { StyleSheet, Text, View, Pressable } from "react-native";
-import DateTimePicker, { DateTimePickerEvent } from "@react-native-community/datetimepicker";
+import DateTimePicker, {
+  DateTimePickerEvent,
+} from "@react-native-community/datetimepicker";
 import { Colors } from "@/constants/theme";
 import { useState } from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -7,30 +9,41 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 type Props = {
   label: string;
   placeholder: string;
+  value: string;
+  onEnteredValue: (date: Date) => void;
 };
 
 type Mode = "date" | "time";
 
-export default function DatePicker({ label, placeholder }: Props) {
-  const [date, setDate] = useState<Date | null>(null);
+export default function DatePicker({
+  label,
+  placeholder,
+  value,
+  onEnteredValue,
+}: Props) {
+  const [date, setDate] = useState<Date | null>(
+  value ? new Date(value) : null
+);
+
   const [mode, setMode] = useState<Mode>("date");
   const [show, setShow] = useState(false);
 
   const onChange = (event: DateTimePickerEvent, selectedDate?: Date) => {
     if (event.type === "set" && selectedDate) {
       setDate(selectedDate);
+      onEnteredValue(selectedDate);
     }
     setShow(false);
   };
 
-const showMode = (currentMode: Mode) => {
-  if (show && mode === currentMode) {
-    setShow(false);
-  } else {
-    setShow(true);
-    setMode(currentMode);
-  }
-};
+  const showMode = (currentMode: Mode) => {
+    if (show && mode === currentMode) {
+      setShow(false);
+    } else {
+      setShow(true);
+      setMode(currentMode);
+    }
+  };
 
   const showDatepicker = () => {
     showMode("date");
@@ -39,24 +52,13 @@ const showMode = (currentMode: Mode) => {
   return (
     <View style={[styles.inputWrapper, { zIndex: 1000 }]}>
       <Text style={styles.label}>{label}</Text>
-
       <View style={styles.input}>
         <Pressable style={{ flex: 1 }} onPress={showDatepicker}>
-          <Text
-            style={[
-              styles.text,
-              { color: date ? "black" : Colors.grey },
-            ]}
-          >
+          <Text style={[styles.text, { color: date ? "black" : Colors.grey }]}>
             {date ? date.toLocaleDateString() : placeholder}
           </Text>
         </Pressable>
-        <Ionicons
-          name="calendar-outline"
-          size={20}
-          color={Colors.grey}
-          // onPress={showDatepicker}
-        />
+        <Ionicons name="calendar-outline" size={20} color={Colors.grey} />
       </View>
 
       {show && (
@@ -65,7 +67,7 @@ const showMode = (currentMode: Mode) => {
           value={date ?? new Date()}
           mode={mode}
           is24Hour={true}
-           display="spinner" 
+          display="spinner"
           onChange={onChange}
         />
       )}

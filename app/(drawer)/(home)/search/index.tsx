@@ -111,8 +111,8 @@ export default function Search() {
             onChangeValue={setSelectedTo}
           />
         </View>
-        <DatePicker label={"Departure"} placeholder="Select departure date" />
-        <DatePicker label={"Return"} placeholder="Select return date" />
+        {/* <DatePicker label={"Departure"} placeholder="Select departure date" value={departureDate} onEnteredValue={setDepartureDate} /> */}
+        {/* <DatePicker label={"Return"} placeholder="Select return date" value={returnDate} onEnteredValue={setReturnDate} /> */}
         <View style={{ zIndex: 3000, elevation: 3000 }}>
           <DropdownPicker
             label="Class"

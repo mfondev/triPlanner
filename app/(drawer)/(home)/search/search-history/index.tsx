@@ -61,7 +61,7 @@ export default function SearchHistory() {
     setFilteredFlights(filtered);
   };
 
-  console.log(filteredFlights);
+  // console.log(filteredFlights);
 
   return filteredFlights.length === 0 ? (
     <View style={styles.returnMessage}>

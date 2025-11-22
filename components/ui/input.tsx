@@ -11,6 +11,7 @@ type InputProps = {
   placeholder: string;
   icon?: IconName;
   bgColor?: boolean;
+  onChange?: (text: string) => void;
 };
 
 export default function DefaultInput({
@@ -18,6 +19,7 @@ export default function DefaultInput({
   placeholder,
   icon,
   bgColor,
+  onChange,
 }: InputProps) {
   return (
     <View style={styles.inputWrapper}>
@@ -45,6 +47,8 @@ export default function DefaultInput({
           // onChangeText={setValue}
           placeholder={placeholder}
           placeholderTextColor={Colors.grey}
+          onChangeText={onChange}
+          
         />
         <MaterialCommunityIcons
           name={icon}

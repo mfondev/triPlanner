@@ -3,10 +3,11 @@ import { Colors } from "@/constants/theme";
 
 type Props = {
   subject: string;
+  onPress: () => {};
 };
-export default function SubmitButton({ subject }: Props) {
+export default function SubmitButton({ subject,onPress }: Props) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={onPress}>
       <Text
         style={{
           backgroundColor: Colors.primary,

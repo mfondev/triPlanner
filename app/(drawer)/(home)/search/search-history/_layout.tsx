@@ -42,22 +42,6 @@ export default function _layout() {
           headerShown: false,
         })}
       />
-      {/* <Stack.Screen
-        name="search-result/[destination]"
-        options={({ navigation }) => ({
-          drawerItemStyle: { display: "none" },
-          headerLeft: () => (
-            <TouchableOpacity
-              onPress={() => navigation.goBack()}
-              style={{ marginLeft: 10 }}
-            >
-              <Ionicons name="chevron-back" size={20} color={Colors.accent} />
-            </TouchableOpacity>
-          ),
-          headerRight: () => null,
-          headerShown: false,
-        })}
-      /> */}
     </Stack>
   );
 }
