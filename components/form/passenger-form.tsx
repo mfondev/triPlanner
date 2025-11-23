@@ -7,6 +7,7 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import DatePicker from "../ui/date-picker";
 import { addPassenger, PassengerProp } from "@/utils/passenger";
 import { useState } from "react";
+import { router } from "expo-router";
 
 export default function PassengerForm() {
   const [passenger, setPassenger] = useState<PassengerProp>({
@@ -21,8 +22,7 @@ export default function PassengerForm() {
     expiryDate: "",
   });
 
-  console.log('fullname',passenger.fullName);
-  console.log('dob', passenger.dob);
+  // console.log(passenger);
 
   const handleAddPassenger = (text: any, value: any) => {
     setPassenger((prevState) => ({
@@ -33,9 +33,11 @@ export default function PassengerForm() {
 
   const handleSubmit = async () => {
     try {
-      await addPassenger(passenger);
+      const response = await addPassenger(passenger);
+      // console.log("response is", response);
+      router.back()
     } catch (error) {
-      console.log(error);
+      console.log(error, "it didnt work");
     }
   };
 
@@ -104,7 +106,7 @@ export default function PassengerForm() {
             placeholder="Select Nationality"
             item={countries}
             dropDownValue={passenger.nationality}
-            onChangeValue={(value) => handleAddPassenger("nationality" , value)}
+            onChangeValue={(value) => handleAddPassenger("nationality", value)}
           />
         </View>
         <DatePicker
