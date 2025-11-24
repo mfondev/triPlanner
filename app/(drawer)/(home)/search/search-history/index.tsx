@@ -4,26 +4,19 @@ import {
   Text,
   View,
   Image,
-  FlatList,
   TouchableOpacity,
   Pressable,
 } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
-import { COUNTRIES } from "@/utils/data";
 import { Colors } from "@/constants/theme";
 import { router } from "expo-router";
 import { useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { flights } from "@/utils/countries";
+import { useFavoriteStore } from "@/utils/store";
 
-function getRandomOrigin(destId: string) {
-  const others = COUNTRIES.filter((c) => c.id !== destId);
-  const random = others[Math.floor(Math.random() * others.length)];
-  return random.country;
-}
-
-type FlightProp = {
+export type FlightProp = {
   id: string;
   departure_location: string;
   arrival_location: string;
@@ -61,7 +54,7 @@ export default function SearchHistory() {
     setFilteredFlights(filtered);
   };
 
-  // console.log(filteredFlights);
+  const { favorites, toggleFavorite } = useFavoriteStore();
 
   return filteredFlights.length === 0 ? (
     <View style={styles.returnMessage}>
@@ -77,7 +70,9 @@ export default function SearchHistory() {
       </Pressable>
     </View>
   ) : (
-    filteredFlights.map((flight) => (
+    filteredFlights.map((flight) => {
+      const isFavorite = favorites.some((item) => item.id === flight.id);
+      return (
       <View style={styles.list} key={flight.id}>
         <Pressable
           style={styles.card}
@@ -97,8 +92,15 @@ export default function SearchHistory() {
           }}
         >
           <Image source={{ uri: flight.image }} style={styles.image} />
-          <TouchableOpacity style={styles.favoriteBtn}>
-            <Ionicons name="heart-outline" size={18} color={Colors.primary} />
+          <TouchableOpacity
+            style={styles.favoriteBtn}
+            onPress={() => toggleFavorite(flight)}
+          >
+            <Ionicons
+              name={isFavorite ? "heart-sharp" : "heart-outline"}
+              size={18}
+              color={Colors.primary}
+            />
           </TouchableOpacity>
           <LinearGradient
             colors={["transparent", "rgba(0,0,0,0.8)"]}
@@ -118,7 +120,8 @@ export default function SearchHistory() {
           </LinearGradient>
         </Pressable>
       </View>
-    ))
+    );
+    })
   );
 }
 
