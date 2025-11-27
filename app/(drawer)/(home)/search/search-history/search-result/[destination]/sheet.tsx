@@ -7,7 +7,7 @@ export default function sheet() {
   return (
     <View style={styles.container}>
       <Text style={styles.headerText}>Select a card</Text>
-      <AddButton subject="Add Card" path={"/cards/sheet"} />;
+      <AddButton subject="Add Card" path={"/cards/sheet"} />
       <SubmitButton subject="Confirm" />
     </View>
   );

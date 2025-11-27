@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { FlightProp } from "@/app/(drawer)/(home)/search/search-history";
+import { FlightProp } from "@/components/destination/flightCard";
 
 interface FavoritesStore {
   favorites: FlightProp[];

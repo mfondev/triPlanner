@@ -10,8 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.victoriaatauba.triPlanner",
-      "googleServicesFile": "./GoogleService-Info.plist"
+      "bundleIdentifier": "com.gideonatauba.triPlanner"
     },
     "android": {
       "adaptiveIcon": {
@@ -22,12 +21,15 @@
       },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.aatauba.triPlanner",
-      "googleServicesFile": "./google-services.json"
+      "package": "com.gideonatauba.triPlanner"
     },
     "web": {
       "output": "static",
       "favicon": "./assets/images/favicon.png"
+    },
+    "extra": {
+      "iosLicenseKey": "UE40F/Pnydpt6hoBq41OY1xBi/iPONk5WvAI8Sl+hABNjEku5HL238wW3Bg2VAuRI4A0xZLESRy7rExhCGCFd+55gsTTBh0EYPckqHykz4smwoAZccFhEpEjuHDEzbH3bOJaZcC4XJbvpMj6b2NRTWtr/zh4dRkUNaPmC30N6vuEqT+6Dhy4HhKUexWZbE+TctaeOiNzTPo/siDtdsNWB9ZUhLqJmJWTLzsAzZSvjJ+MpeRCUvlza/LP1jA7JrE/vG9gyQg8yawZer4/bTPqqXMcyfhaeAgYEX0ouCUVXMmRc3Fn8UDTgSADsRAMaJ0U2jEASHU/RpdSjTHwDIV1GQ==\nU2NhbmJvdFNESwpjb20uZ2lkZW9uYXRhdWJhLnRyaVBsYW5uZXIKMTc2NDgwNjM5OQo4Mzg4NjA3CjE5\n",
+      "androidLicenseKey": "UE40F/Pnydpt6hoBq41OY1xBi/iPONk5WvAI8Sl+hABNjEku5HL238wW3Bg2VAuRI4A0xZLESRy7rExhCGCFd+55gsTTBh0EYPckqHykz4smwoAZccFhEpEjuHDEzbH3bOJaZcC4XJbvpMj6b2NRTWtr/zh4dRkUNaPmC30N6vuEqT+6Dhy4HhKUexWZbE+TctaeOiNzTPo/siDtdsNWB9ZUhLqJmJWTLzsAzZSvjJ+MpeRCUvlza/LP1jA7JrE/vG9gyQg8yawZer4/bTPqqXMcyfhaeAgYEX0ouCUVXMmRc3Fn8UDTgSADsRAMaJ0U2jEASHU/RpdSjTHwDIV1GQ==\nU2NhbmJvdFNESwpjb20uZ2lkZW9uYXRhdWJhLnRyaVBsYW5uZXIKMTc2NDgwNjM5OQo4Mzg4NjA3CjE5\n"
     },
     "plugins": [
       "expo-router",
@@ -46,10 +48,7 @@
       [
         "expo-asset",
         {
-          "assets": [
-            "path/to/file.png",
-            "path/to/directory"
-          ]
+          "assets": ["path/to/file.png", "path/to/directory"]
         }
       ],
       "expo-font",
@@ -64,7 +63,15 @@
       "@react-native-firebase/app",
       "@react-native-firebase/auth",
       "expo-asset",
-      "expo-sqlite"
+      "expo-sqlite",
+      [
+        "react-native-scanbot-sdk",
+        {
+          "iOSCameraUsageDescription": "Credit card scanning permission",
+          "largeHeap": true,
+          "mavenURLs": true
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true,

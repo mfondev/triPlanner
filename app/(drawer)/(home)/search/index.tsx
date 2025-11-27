@@ -113,7 +113,7 @@ export default function Search() {
         </View>
         {/* <DatePicker label={"Departure"} placeholder="Select departure date" value={departureDate} onEnteredValue={setDepartureDate} /> */}
         {/* <DatePicker label={"Return"} placeholder="Select return date" value={returnDate} onEnteredValue={setReturnDate} /> */}
-        <View style={{ zIndex: 3000, elevation: 3000 }}>
+        <View style={{ zIndex: 1000, elevation: 1000 }}>
           <DropdownPicker
             label="Class"
             placeholder="Select Class"

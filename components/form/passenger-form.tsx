@@ -35,7 +35,7 @@ export default function PassengerForm() {
     try {
       const response = await addPassenger(passenger);
       // console.log("response is", response);
-      router.back()
+      router.back();
     } catch (error) {
       console.log(error, "it didnt work");
     }
@@ -72,7 +72,6 @@ export default function PassengerForm() {
           </Text>
         </View>
       ) : null}
-      ;
       <View>
         <DefaultInput
           label="Fullname"

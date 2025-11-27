@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-import { StatusBar } from "react-native";
+import { StatusBar ,Platform} from "react-native";
 import "react-native-reanimated";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import {
@@ -9,6 +9,7 @@ import {
 } from "@expo-google-fonts/poppins";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
+import ScanbotSDK from "react-native-scanbot-sdk";
 
 SplashScreen.preventAutoHideAsync();
 
