@@ -8,9 +8,23 @@ import {
 } from "react-native";
 import { Colors } from "@/constants/theme";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { CardProp } from "@/utils/cards";
 
 export default function sheet() {
   const [value, setValue] = useState("");
+  const [cardDetails, setCardDetails] = useState<CardProp>({
+    card_number: 0,
+    cvv: 0,
+    exp_date: "",
+    name: "",
+  });
+
+  const onInputChange = (text: any, value: any) => {
+    setCardDetails((prevState) => ({
+      ...prevState,
+      [value]: text,
+    }));
+  };
 
   return (
     <View style={styles.container}>
@@ -21,10 +35,11 @@ export default function sheet() {
         >
           <TextInput
             style={[{ flex: 1, paddingVertical: 0 }]}
-            value={value}
+            value={""}
             onChangeText={setValue}
             placeholder="Scan your card"
             placeholderTextColor={Colors.grey}
+            readOnly
           />
           <MaterialCommunityIcons
             name="line-scan"
@@ -53,10 +68,14 @@ export default function sheet() {
           <Text style={styles.label}>Card number</Text>
           <TextInput
             style={styles.input}
-            value={value}
-            onChangeText={setValue}
+            // value={cardDetails.card_number}
+            onChangeText={(cardNumber) =>
+              onInputChange(cardNumber, "card_number")
+            }
             placeholder="XXXX XXXX XXXX XXXX"
             placeholderTextColor={Colors.grey}
+            maxLength={16}
+            inputMode="numeric"
           />
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
@@ -64,10 +83,11 @@ export default function sheet() {
             <Text style={styles.label}>Expiration Date</Text>
             <TextInput
               style={[styles.input, { width: 160 }]}
-              value={value}
-              onChangeText={setValue}
+              // value={value}
+              onChangeText={(exp) => onInputChange(exp, "exp_date")}
               placeholder="MM/YY"
               placeholderTextColor={Colors.grey}
+              maxLength={5}
             />
           </View>
           <View style={styles.inputWrapper}>
@@ -75,15 +95,18 @@ export default function sheet() {
             <View
               style={[
                 styles.input,
-                { flexDirection: "row", alignItems: "center" ,width: 150},
+                { flexDirection: "row", alignItems: "center", width: 150 },
               ]}
             >
               <TextInput
                 style={[{ flex: 1, paddingVertical: 0 }]}
-                value={value}
-                onChangeText={setValue}
+                // value={value}
+                onChangeText={(cvv) => onInputChange(cvv, "cvv")}
                 placeholder="XXX"
                 placeholderTextColor={Colors.grey}
+                maxLength={3}
+                inputMode="numeric"
+                secureTextEntry
               />
               <MaterialCommunityIcons
                 name="information-slab-circle-outline"
@@ -97,8 +120,8 @@ export default function sheet() {
           <Text style={styles.label}>Name</Text>
           <TextInput
             style={styles.input}
-            value={value}
-            onChangeText={setValue}
+            // value={value}
+            onChangeText={(name) => onInputChange(name, "name")}
             placeholder="XXXX XXXX XXXX XXXX"
             placeholderTextColor={Colors.grey}
           />
