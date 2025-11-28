@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -9,14 +9,16 @@ import {
 import { Colors } from "@/constants/theme";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { CardProp } from "@/utils/cards";
+import { addCard } from "@/utils/cards";
+import { router } from "expo-router";
 
 export default function sheet() {
-  const [value, setValue] = useState("");
   const [cardDetails, setCardDetails] = useState<CardProp>({
-    card_number: 0,
-    cvv: 0,
+    card_number: '',
+    cvv: '',
     exp_date: "",
     name: "",
+    card_type: "",
   });
 
   const onInputChange = (text: any, value: any) => {
@@ -24,6 +26,69 @@ export default function sheet() {
       ...prevState,
       [value]: text,
     }));
+  };
+
+  // useEffect(() => {
+  //   let typeCard = cardDetails.card_number.toString();
+
+  //   const getCardType = () => {
+  //     if (typeCard.startsWith("4")) {
+  //       cardType = "Visa";
+  //     } else {
+  //       cardType = "Mastercard";
+  //     }
+  //     return cardType;
+  //   };
+
+  //   getCardType();
+  // }, []);
+
+  useEffect(() => {
+    const num = cardDetails.card_number.toString();
+
+    let detectedType = "";
+
+    if (num.startsWith("4")) {
+      detectedType = "Visa";
+    } else if (/^5[1-5]/.test(num) || /^2/.test(num)) {
+      detectedType = "Mastercard";
+    } else {
+      detectedType = "";
+    }
+
+    setCardDetails((prev) => ({
+      ...prev,
+      card_type: detectedType,
+    }));
+  }, [cardDetails.card_number]);
+
+  const handleCardSubmit = async () => {
+    const { card_number, cvv, name, exp_date } = cardDetails;
+
+    if (!card_number || !cvv || !name || !exp_date) {
+      alert("Please fill in all fields.");
+      return;
+    }
+
+    const num = card_number.toString();
+
+    if (!(num.startsWith("4") || num.startsWith("5") || num.startsWith("2"))) {
+      alert(
+        "Card number is invalid. Must start with 4 (Visa), 5 or 2 (Mastercard)."
+      );
+      return;
+    }
+
+    const response = await addCard(cardDetails);
+    console.log(response);
+
+    router.back();
+  };
+
+  const formatCardNumber = (value: string) => {
+    const cleaned = value.replace(/\s+/g, "");
+
+    return cleaned.replace(/(.{4})/g, "$1 ").trim();
   };
 
   return (
@@ -36,7 +101,7 @@ export default function sheet() {
           <TextInput
             style={[{ flex: 1, paddingVertical: 0 }]}
             value={""}
-            onChangeText={setValue}
+            // onChangeText={setValue}
             placeholder="Scan your card"
             placeholderTextColor={Colors.grey}
             readOnly
@@ -68,13 +133,14 @@ export default function sheet() {
           <Text style={styles.label}>Card number</Text>
           <TextInput
             style={styles.input}
-            // value={cardDetails.card_number}
-            onChangeText={(cardNumber) =>
-              onInputChange(cardNumber, "card_number")
-            }
+            value={cardDetails.card_number}
+            onChangeText={(text) => {
+              const formatted = formatCardNumber(text);
+              onInputChange(formatted, "card_number");
+            }}
             placeholder="XXXX XXXX XXXX XXXX"
             placeholderTextColor={Colors.grey}
-            maxLength={16}
+            maxLength={19} // 16 digits + 3 spaces = 19
             inputMode="numeric"
           />
         </View>
@@ -127,7 +193,7 @@ export default function sheet() {
           />
         </View>
       </View>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handleCardSubmit}>
         <Text
           style={{
             backgroundColor: Colors.primary,

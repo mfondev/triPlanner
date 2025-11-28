@@ -1,10 +1,11 @@
 import { supabase } from "./supabase";
 
 export type CardProp = {
-  card_number: number;
-  cvv: number;
+  card_number: string;
+  cvv: string;
   name: string;
   exp_date: string;
+  card_type: string
 };
 
 export const addCard = async (cardData: CardProp) => {
