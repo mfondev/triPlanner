@@ -5,7 +5,7 @@ export type CardProp = {
   cvv: string;
   name: string;
   exp_date: string;
-  card_type: string
+  card_type: string;
 };
 
 export const addCard = async (cardData: CardProp) => {
@@ -20,4 +20,13 @@ export const addCard = async (cardData: CardProp) => {
     console.log(data);
     return data;
   }
+};
+
+export const getCards = async () => {
+  const { data, error } = await supabase.from("cards").select("*");
+  if (error) {
+    console.log("Supabase Error:", error.message);
+    return;
+  } 
+  return data
 };

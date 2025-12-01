@@ -28,7 +28,6 @@ export default function PassengerList() {
           <Pressable
             key={passenger.id}
             style={styles.passengerContainer}
-            // onPress={() => router.push(`passengers/${passenger.id}`)}
           >
             <FontAwesome name="user" size={18} color={Colors.primary} />
             <Text style={styles.passengerName}>{passenger.fullName}</Text>
