@@ -24,9 +24,6 @@ export default function Account() {
     // console.log(user);
   };
 
-
-
-
   if (loading) {
     return (
       <View style={[styles.container, { justifyContent: 'center', alignItems: 'center' }]}>

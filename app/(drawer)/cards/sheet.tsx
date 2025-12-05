@@ -28,21 +28,6 @@ export default function sheet() {
     }));
   };
 
-  // useEffect(() => {
-  //   let typeCard = cardDetails.card_number.toString();
-
-  //   const getCardType = () => {
-  //     if (typeCard.startsWith("4")) {
-  //       cardType = "Visa";
-  //     } else {
-  //       cardType = "Mastercard";
-  //     }
-  //     return cardType;
-  //   };
-
-  //   getCardType();
-  // }, []);
-
   useEffect(() => {
     const num = cardDetails.card_number.toString();
 
@@ -140,7 +125,7 @@ export default function sheet() {
             }}
             placeholder="XXXX XXXX XXXX XXXX"
             placeholderTextColor={Colors.grey}
-            maxLength={19} // 16 digits + 3 spaces = 19
+            maxLength={19} 
             inputMode="numeric"
           />
         </View>
@@ -149,7 +134,6 @@ export default function sheet() {
             <Text style={styles.label}>Expiration Date</Text>
             <TextInput
               style={[styles.input, { width: 160 }]}
-              // value={value}
               onChangeText={(exp) => onInputChange(exp, "exp_date")}
               placeholder="MM/YY"
               placeholderTextColor={Colors.grey}

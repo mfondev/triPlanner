@@ -1,8 +1,52 @@
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  Alert,
+  ActivityIndicator,
+} from "react-native";
 import { Colors } from "@/constants/theme";
 import { router } from "expo-router";
+import { resetPassword } from "@/utils/auth";
+import { useState, useEffect } from "react";
 
 export default function CreateNewPasswordForm() {
+  const [firstPassword, setFirstPassword] = useState<string>("");
+  const [secondPassword, setSecondPassword] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<boolean>(false);
+  const passwordMatch = firstPassword === secondPassword;
+
+  useEffect(() => {
+    if (error && passwordMatch) {
+      setError(false);
+    }
+  }, [firstPassword, secondPassword, passwordMatch]);
+
+  const onResetPassword = async () => {
+    if (!passwordMatch) {
+      setError(true);
+      return;
+    }
+    setLoading(true);
+
+    try {
+      const newPassword = secondPassword;
+      const response = await resetPassword(newPassword);
+      console.log(response);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      // Alert.alert("Password reset successfully!");
+      router.navigate("/(auth)/password-changed");
+    } catch (error) {
+      console.error(error);
+      Alert.alert("Something went wrong. Try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View>
@@ -17,6 +61,7 @@ export default function CreateNewPasswordForm() {
           style={styles.input}
           placeholder="Enter new password"
           secureTextEntry
+          onChangeText={setFirstPassword}
         />
       </View>
       <View>
@@ -25,11 +70,24 @@ export default function CreateNewPasswordForm() {
           style={styles.input}
           placeholder="Retype password"
           secureTextEntry
+          onChangeText={setSecondPassword}
         />
       </View>
-      <Pressable style={styles.button} onPress={() => router.navigate('/(auth)/password-changed')}>
-        <Text style={styles.buttonText}>Reset Password</Text>
+      <Pressable
+        style={[styles.button, loading && { opacity: 0.6 }]}
+        onPress={onResetPassword}
+        disabled={loading}
+      >
+        {loading ? (
+          <ActivityIndicator size="small" />
+        ) : (
+          <Text style={styles.buttonText}>Reset Password</Text>
+        )}
       </Pressable>
+
+      {error && (
+        <Text style={styles.errorText}>Make sure passwords are same</Text>
+      )}
     </View>
   );
 }
@@ -82,6 +140,13 @@ const styles = StyleSheet.create({
   },
   loginText: {
     color: Colors.primary,
+    fontFamily: "Poppins_400Regular",
+  },
+  errorText: {
+    color: "red",
+    fontSize: 12,
+    marginBottom: 10,
+    textAlign: "center",
     fontFamily: "Poppins_400Regular",
   },
 });

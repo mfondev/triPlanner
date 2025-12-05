@@ -1,13 +1,14 @@
 import { Text, View, TouchableOpacity, StyleSheet } from "react-native";
 import { Colors } from "@/constants/theme";
 import { Link ,Href} from "expo-router";
+import React from "react";
 
 type Props = {
   subject: string;
   path: Href;
 };
 
-export default function AddButton({ subject, path }: Props) {
+ function AddButton({ subject, path }: Props) {
   return (
     <View style={styles.container}>
       <Link
@@ -46,3 +47,5 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.gray,
   },
 });
+
+export default React.memo(AddButton)

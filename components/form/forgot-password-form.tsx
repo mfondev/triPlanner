@@ -1,13 +1,50 @@
-import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+  Alert,
+} from "react-native";
 import React from "react";
 import { Colors } from "@/constants/theme";
 import { Link, useRouter } from "expo-router";
+import { forgotPassword } from "@/utils/auth";
+import { useState } from "react";
+import { getUser } from "@/utils/auth";
+import { UserProps } from "@/types/types";
+import { useEffect } from "react";
 
 export default function ForgotPasswordForm() {
+  const [email, setEmail] = useState<string>("");
+  // const [userEmail, setUserEmail] = useState<string>("");
+  // console.log(email);
+  // console.log(userEmail);
+  
+
+  // useEffect(() => {
+  //   const getUserEmail = async () => {
+  //     const userResponse = await getUser();
+  //     setUserEmail(userResponse?.user.email || "");
+  //   };
+  //   getUserEmail();
+  // }, []);
+
   const router = useRouter();
-  function onSubmit() {
+  async function onSubmit() {
+    if (email === "" || !email.includes("@") ) {
+      Alert.alert("Make sure text is an Email");
+      return;
+    }
+    // if (email === userEmail) {
+    //   Alert.alert('Email doesnt exist ')
+    // }
+    const response = await forgotPassword(email);
+    console.log(response);
+
     router.navigate("/new-password");
   }
+
   return (
     <View style={styles.container}>
       <View>
@@ -18,7 +55,11 @@ export default function ForgotPasswordForm() {
       </View>
       <View>
         <Text style={styles.label}>E-mail</Text>
-        <TextInput style={styles.input} placeholder="Enter your email" />
+        <TextInput
+          style={styles.input}
+          placeholder="Enter your email"
+          onChangeText={setEmail}
+        />
       </View>
 
       <Pressable style={styles.button} onPress={onSubmit}>
