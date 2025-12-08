@@ -29,7 +29,11 @@
     },
     "extra": {
       "iosLicenseKey": "UE40F/Pnydpt6hoBq41OY1xBi/iPONk5WvAI8Sl+hABNjEku5HL238wW3Bg2VAuRI4A0xZLESRy7rExhCGCFd+55gsTTBh0EYPckqHykz4smwoAZccFhEpEjuHDEzbH3bOJaZcC4XJbvpMj6b2NRTWtr/zh4dRkUNaPmC30N6vuEqT+6Dhy4HhKUexWZbE+TctaeOiNzTPo/siDtdsNWB9ZUhLqJmJWTLzsAzZSvjJ+MpeRCUvlza/LP1jA7JrE/vG9gyQg8yawZer4/bTPqqXMcyfhaeAgYEX0ouCUVXMmRc3Fn8UDTgSADsRAMaJ0U2jEASHU/RpdSjTHwDIV1GQ==\nU2NhbmJvdFNESwpjb20uZ2lkZW9uYXRhdWJhLnRyaVBsYW5uZXIKMTc2NDgwNjM5OQo4Mzg4NjA3CjE5\n",
-      "androidLicenseKey": "UE40F/Pnydpt6hoBq41OY1xBi/iPONk5WvAI8Sl+hABNjEku5HL238wW3Bg2VAuRI4A0xZLESRy7rExhCGCFd+55gsTTBh0EYPckqHykz4smwoAZccFhEpEjuHDEzbH3bOJaZcC4XJbvpMj6b2NRTWtr/zh4dRkUNaPmC30N6vuEqT+6Dhy4HhKUexWZbE+TctaeOiNzTPo/siDtdsNWB9ZUhLqJmJWTLzsAzZSvjJ+MpeRCUvlza/LP1jA7JrE/vG9gyQg8yawZer4/bTPqqXMcyfhaeAgYEX0ouCUVXMmRc3Fn8UDTgSADsRAMaJ0U2jEASHU/RpdSjTHwDIV1GQ==\nU2NhbmJvdFNESwpjb20uZ2lkZW9uYXRhdWJhLnRyaVBsYW5uZXIKMTc2NDgwNjM5OQo4Mzg4NjA3CjE5\n"
+      "androidLicenseKey": "UE40F/Pnydpt6hoBq41OY1xBi/iPONk5WvAI8Sl+hABNjEku5HL238wW3Bg2VAuRI4A0xZLESRy7rExhCGCFd+55gsTTBh0EYPckqHykz4smwoAZccFhEpEjuHDEzbH3bOJaZcC4XJbvpMj6b2NRTWtr/zh4dRkUNaPmC30N6vuEqT+6Dhy4HhKUexWZbE+TctaeOiNzTPo/siDtdsNWB9ZUhLqJmJWTLzsAzZSvjJ+MpeRCUvlza/LP1jA7JrE/vG9gyQg8yawZer4/bTPqqXMcyfhaeAgYEX0ouCUVXMmRc3Fn8UDTgSADsRAMaJ0U2jEASHU/RpdSjTHwDIV1GQ==\nU2NhbmJvdFNESwpjb20uZ2lkZW9uYXRhdWJhLnRyaVBsYW5uZXIKMTc2NDgwNjM5OQo4Mzg4NjA3CjE5\n",
+      "router": {},
+      "eas": {
+        "projectId": "9872614b-e956-4656-817a-2132c0020d71"
+      }
     },
     "plugins": [
       "expo-router",
@@ -48,7 +52,10 @@
       [
         "expo-asset",
         {
-          "assets": ["path/to/file.png", "path/to/directory"]
+          "assets": [
+            "path/to/file.png",
+            "path/to/directory"
+          ]
         }
       ],
       "expo-font",
@@ -64,6 +71,7 @@
       "@react-native-firebase/auth",
       "expo-asset",
       "expo-sqlite",
+      "expo-notifications",
       [
         "react-native-scanbot-sdk",
         {

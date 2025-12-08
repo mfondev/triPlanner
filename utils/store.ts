@@ -1,5 +1,7 @@
 import { create } from "zustand";
 import { FlightProp } from "@/components/destination/flightCard";
+import { sendFavoriteNotification } from "./notification";
+import * as Notifications from "expo-notifications";
 
 interface FavoritesStore {
   favorites: FlightProp[];
@@ -21,7 +23,8 @@ export const useFavoriteStore = create<FavoritesStore>((set, get) => ({
       favorites: state.favorites.filter((item) => item.id !== flight.id),
     })),
 
-  toggleFavorite: (flight) => {
+
+  toggleFavorite: async (flight) => {
     const { favorites } = get();
     const exists = favorites.some((item) => item.id === flight.id);
 
@@ -29,10 +32,24 @@ export const useFavoriteStore = create<FavoritesStore>((set, get) => ({
       set({
         favorites: favorites.filter((item) => item.id !== flight.id),
       });
+
+      await Notifications.scheduleNotificationAsync({
+        content: {
+          title: "TriPlanner",
+          body: "Trip removed from favorites",
+          subtitle: "Trip removed",
+        },
+        trigger: {
+          type: Notifications.SchedulableTriggerInputTypes.TIME_INTERVAL,
+          seconds: 1,
+        },
+      });
     } else {
       set({
         favorites: [...favorites, flight],
       });
+
+      await sendFavoriteNotification(flight.arrival_location || "your trip");
     }
   },
 }));

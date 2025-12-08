@@ -20,7 +20,6 @@ export default function ForgotPasswordForm() {
   // const [userEmail, setUserEmail] = useState<string>("");
   // console.log(email);
   // console.log(userEmail);
-  
 
   // useEffect(() => {
   //   const getUserEmail = async () => {
@@ -32,7 +31,7 @@ export default function ForgotPasswordForm() {
 
   const router = useRouter();
   async function onSubmit() {
-    if (email === "" || !email.includes("@") ) {
+    if (email === "" || !email.includes("@")) {
       Alert.alert("Make sure text is an Email");
       return;
     }
@@ -67,7 +66,12 @@ export default function ForgotPasswordForm() {
       </Pressable>
       <Text style={styles.accountContainer}>
         Remember your password?{" "}
-        <Link href="(auth)" style={styles.loginText}>
+        <Link
+          href={{
+            pathname: "/(auth)",
+          }}
+          style={styles.loginText}
+        >
           Login Now
         </Link>
       </Text>
