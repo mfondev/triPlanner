@@ -11,8 +11,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { LinearGradient } from "expo-linear-gradient";
 import { Colors } from "@/constants/theme";
 import { router } from "expo-router";
-import { useFavoriteStore } from "@/utils/store";
-// import { usePushNotifications } from "@/utils/notification";
+import { useFavoriteStore } from "@/utils/store"; //notification logic used here
 
 export type FlightProp = {
   id: string;
@@ -30,15 +29,8 @@ interface FlightCardProps {
 }
 
 export default function FlightCard({ flight, flightClass }: FlightCardProps) {
-  // const { expoPushToken, notification } = usePushNotifications();
   const { favorites, toggleFavorite } = useFavoriteStore();
   const isFavorite = favorites.some((item) => item.id === flight.id);
-
-  // const data = JSON.stringify(notification,undefined, 2)
-  // console.log(notification);
-  
-  // console.log(data);
-  // console.log(expoPushToken);
 
   const handleNavigate = () => {
     router.navigate({

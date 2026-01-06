@@ -5,17 +5,36 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  Pressable,
+  Button
 } from "react-native";
 import { Colors } from "@/constants/theme";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { CardProp } from "@/utils/cards";
 import { addCard } from "@/utils/cards";
 import { router } from "expo-router";
+import useCamera from "@/utils/camera";
 
 export default function sheet() {
+  const { facing, permission, toggleCameraFacing,requestPermission } = useCamera();
+    if (!permission) {
+    // Camera permissions are still loading.
+    return <View />;
+  }
+
+  if (!permission.granted) {
+    // Camera permissions are not granted yet.
+    return (
+      <View style={styles.container}>
+        <Text >We need your permission to show the camera</Text>
+        <Button onPress={requestPermission} title="grant permission" />
+      </View>
+    );
+  }
+
   const [cardDetails, setCardDetails] = useState<CardProp>({
-    card_number: '',
-    cvv: '',
+    card_number: "",
+    cvv: "",
     exp_date: "",
     name: "",
     card_type: "",
@@ -91,12 +110,14 @@ export default function sheet() {
             placeholderTextColor={Colors.grey}
             readOnly
           />
-          <MaterialCommunityIcons
-            name="line-scan"
-            size={20}
-            color={Colors.secondary}
-            style={[{ marginLeft: 8 }]}
-          />
+          <Pressable>
+            <MaterialCommunityIcons
+              name="line-scan"
+              size={20}
+              color={Colors.secondary}
+              style={[{ marginLeft: 8 }]}
+            />
+          </Pressable>
         </View>
       </View>
 
@@ -125,7 +146,7 @@ export default function sheet() {
             }}
             placeholder="XXXX XXXX XXXX XXXX"
             placeholderTextColor={Colors.grey}
-            maxLength={19} 
+            maxLength={19}
             inputMode="numeric"
           />
         </View>
