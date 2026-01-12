@@ -22,6 +22,15 @@ export default function _layout() {
           contentStyle: { backgroundColor: Colors.gray },
         }}
       />
+      <Stack.Screen
+        name="camera"
+        options={{
+          title: "Camera",
+          headerShown: false,
+          presentation: "fullScreenModal",
+          animation: "slide_from_bottom",
+        }}
+      />
     </Stack>
   );
 }

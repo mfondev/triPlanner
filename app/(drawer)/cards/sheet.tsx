@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+// 9M5??P5fpoC4&3gB
 import {
   View,
   Text,
@@ -6,7 +7,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Pressable,
-  Button
+  Button,
 } from "react-native";
 import { Colors } from "@/constants/theme";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
@@ -14,23 +15,16 @@ import { CardProp } from "@/utils/cards";
 import { addCard } from "@/utils/cards";
 import { router } from "expo-router";
 import useCamera from "@/utils/camera";
+import { CameraView, CameraType, useCameraPermissions } from "expo-camera";
 
 export default function sheet() {
-  const { facing, permission, toggleCameraFacing,requestPermission } = useCamera();
-    if (!permission) {
-    // Camera permissions are still loading.
-    return <View />;
-  }
-
-  if (!permission.granted) {
-    // Camera permissions are not granted yet.
-    return (
-      <View style={styles.container}>
-        <Text >We need your permission to show the camera</Text>
-        <Button onPress={requestPermission} title="grant permission" />
-      </View>
-    );
-  }
+  const {
+    facing,
+    permission,
+    requestPermission,
+    onCameraView,
+    toggleCameraView,
+  } = useCamera();
 
   const [cardDetails, setCardDetails] = useState<CardProp>({
     card_number: "",
@@ -39,13 +33,6 @@ export default function sheet() {
     name: "",
     card_type: "",
   });
-
-  const onInputChange = (text: any, value: any) => {
-    setCardDetails((prevState) => ({
-      ...prevState,
-      [value]: text,
-    }));
-  };
 
   useEffect(() => {
     const num = cardDetails.card_number.toString();
@@ -65,6 +52,28 @@ export default function sheet() {
       card_type: detectedType,
     }));
   }, [cardDetails.card_number]);
+
+  if (!permission) {
+    // Camera permissions are still loading.
+    return <View />;
+  }
+
+  if (!permission.granted) {
+    // Camera permissions are not granted yet.
+    return (
+      <View style={styles.container}>
+        <Text>We need your permission to show the camera</Text>
+        <Button onPress={requestPermission} title="grant permission" />
+      </View>
+    );
+  }
+
+  const onInputChange = (text: any, value: any) => {
+    setCardDetails((prevState) => ({
+      ...prevState,
+      [value]: text,
+    }));
+  };
 
   const handleCardSubmit = async () => {
     const { card_number, cvv, name, exp_date } = cardDetails;
@@ -91,129 +100,144 @@ export default function sheet() {
 
   const formatCardNumber = (value: string) => {
     const cleaned = value.replace(/\s+/g, "");
-
     return cleaned.replace(/(.{4})/g, "$1 ").trim();
   };
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.inputWrapper}>
-        <Text style={styles.label}>Scan</Text>
-        <View
-          style={[styles.input, { flexDirection: "row", alignItems: "center" }]}
-        >
-          <TextInput
-            style={[{ flex: 1, paddingVertical: 0 }]}
-            value={""}
-            // onChangeText={setValue}
-            placeholder="Scan your card"
-            placeholderTextColor={Colors.grey}
-            readOnly
-          />
-          <Pressable>
-            <MaterialCommunityIcons
-              name="line-scan"
-              size={20}
-              color={Colors.secondary}
-              style={[{ marginLeft: 8 }]}
-            />
-          </Pressable>
-        </View>
-      </View>
+  const openCameraPage = () => {
+    router.push("/(drawer)/cards/camera");
+  }
 
-      <Text
-        style={{
-          fontSize: 16,
-          fontFamily: "Poppins_600SemiBold",
-          color: Colors.secondary,
-        }}
-      >
-        Or add card by filling the form below
-      </Text>
-      <View
-        style={{
-          marginTop: 20,
-        }}
-      >
+  return (
+  <View style={styles.container}>
+    {/* {onCameraView ? (
+      <View style={styles.cameraContainer}>
+        <CameraView facing={facing} style={styles.camera} />
+        <Pressable 
+          style={styles.closeButton} 
+          onPress={toggleCameraView}
+        >
+          <Text style={styles.closeButtonText}>Close Camera</Text>
+        </Pressable>
+      </View>
+    ) : (
+      <> */}
         <View style={styles.inputWrapper}>
-          <Text style={styles.label}>Card number</Text>
-          <TextInput
-            style={styles.input}
-            value={cardDetails.card_number}
-            onChangeText={(text) => {
-              const formatted = formatCardNumber(text);
-              onInputChange(formatted, "card_number");
-            }}
-            placeholder="XXXX XXXX XXXX XXXX"
-            placeholderTextColor={Colors.grey}
-            maxLength={19}
-            inputMode="numeric"
-          />
-        </View>
-        <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
-          <View style={styles.inputWrapper}>
-            <Text style={styles.label}>Expiration Date</Text>
+          <Text style={styles.label}>Scan</Text>
+          <View
+            style={[styles.input, { flexDirection: "row", alignItems: "center" }]}
+          >
             <TextInput
-              style={[styles.input, { width: 160 }]}
-              onChangeText={(exp) => onInputChange(exp, "exp_date")}
-              placeholder="MM/YY"
+              style={[{ flex: 1, paddingVertical: 0 }]}
+              value={""}
+              placeholder="Scan your card"
               placeholderTextColor={Colors.grey}
-              maxLength={5}
+              readOnly
             />
-          </View>
-          <View style={styles.inputWrapper}>
-            <Text style={styles.label}>CVV</Text>
-            <View
-              style={[
-                styles.input,
-                { flexDirection: "row", alignItems: "center", width: 150 },
-              ]}
-            >
-              <TextInput
-                style={[{ flex: 1, paddingVertical: 0 }]}
-                // value={value}
-                onChangeText={(cvv) => onInputChange(cvv, "cvv")}
-                placeholder="XXX"
-                placeholderTextColor={Colors.grey}
-                maxLength={3}
-                inputMode="numeric"
-                secureTextEntry
-              />
+            {/* <Pressable onPress={toggleCameraView}> */}
+            <Pressable onPress={openCameraPage}>
               <MaterialCommunityIcons
-                name="information-slab-circle-outline"
+                name="line-scan"
                 size={20}
                 color={Colors.secondary}
+                style={[{ marginLeft: 8 }]}
               />
-            </View>
+            </Pressable>
           </View>
         </View>
-        <View style={styles.inputWrapper}>
-          <Text style={styles.label}>Name</Text>
-          <TextInput
-            style={styles.input}
-            // value={value}
-            onChangeText={(name) => onInputChange(name, "name")}
-            placeholder="XXXX XXXX XXXX XXXX"
-            placeholderTextColor={Colors.grey}
-          />
-        </View>
-      </View>
-      <TouchableOpacity onPress={handleCardSubmit}>
+
         <Text
           style={{
-            backgroundColor: Colors.primary,
-            textAlign: "center",
-            fontFamily: "Poppins_400Regular",
-            color: "white",
-            paddingVertical: 10,
-            borderRadius: 7,
+            fontSize: 16,
+            fontFamily: "Poppins_600SemiBold",
+            color: Colors.secondary,
           }}
         >
-          Add card
+          Or add card by filling the form below
         </Text>
-      </TouchableOpacity>
-    </View>
-  );
+        
+        <View style={{ marginTop: 20 }}>
+          <View style={styles.inputWrapper}>
+            <Text style={styles.label}>Card number</Text>
+            <TextInput
+              style={styles.input}
+              value={cardDetails.card_number}
+              onChangeText={(text) => {
+                const formatted = formatCardNumber(text);
+                onInputChange(formatted, "card_number");
+              }}
+              placeholder="XXXX XXXX XXXX XXXX"
+              placeholderTextColor={Colors.grey}
+              maxLength={19}
+              inputMode="numeric"
+            />
+          </View>
+          
+          <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+            <View style={styles.inputWrapper}>
+              <Text style={styles.label}>Expiration Date</Text>
+              <TextInput
+                style={[styles.input, { width: 160 }]}
+                onChangeText={(exp) => onInputChange(exp, "exp_date")}
+                placeholder="MM/YY"
+                placeholderTextColor={Colors.grey}
+                maxLength={5}
+              />
+            </View>
+            <View style={styles.inputWrapper}>
+              <Text style={styles.label}>CVV</Text>
+              <View
+                style={[
+                  styles.input,
+                  { flexDirection: "row", alignItems: "center", width: 150 },
+                ]}
+              >
+                <TextInput
+                  style={[{ flex: 1, paddingVertical: 0 }]}
+                  onChangeText={(cvv) => onInputChange(cvv, "cvv")}
+                  placeholder="XXX"
+                  placeholderTextColor={Colors.grey}
+                  maxLength={3}
+                  inputMode="numeric"
+                  secureTextEntry
+                />
+                <MaterialCommunityIcons
+                  name="information-slab-circle-outline"
+                  size={20}
+                  color={Colors.secondary}
+                />
+              </View>
+            </View>
+          </View>
+          
+          <View style={styles.inputWrapper}>
+            <Text style={styles.label}>Name</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={(name) => onInputChange(name, "name")}
+              placeholder="XXXX XXXX XXXX XXXX"
+              placeholderTextColor={Colors.grey}
+            />
+          </View>
+        </View>
+        
+        <TouchableOpacity onPress={handleCardSubmit}>
+          <Text
+            style={{
+              backgroundColor: Colors.primary,
+              textAlign: "center",
+              fontFamily: "Poppins_400Regular",
+              color: "white",
+              paddingVertical: 10,
+              borderRadius: 7,
+            }}
+          >
+            Add card
+          </Text>
+        </TouchableOpacity>
+      {/* </> */}
+    {/* )} */}
+  </View>
+);
 }
 
 const styles = StyleSheet.create({
@@ -243,5 +267,29 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: Colors.secondary,
     zIndex: 10,
+  },
+  cameraContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 1000,
+  },
+  camera: {
+    flex: 1,
+  },
+  closeButton: {
+    position: 'absolute',
+    top: 40,
+    right: 20,
+    backgroundColor: 'white',
+    padding: 10,
+    borderRadius: 5,
+    zIndex: 1001,
+  },
+  closeButtonText: {
+    fontFamily: "Poppins_600SemiBold",
+    fontSize: 14,
   },
 });
