@@ -7,6 +7,8 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { TouchableOpacity } from "react-native";
 import Octicons from "@expo/vector-icons/Octicons";
 import Fontisto from "@expo/vector-icons/Fontisto";
+import { useSegments } from "expo-router";
+
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 const drawertitle = [
@@ -54,11 +56,12 @@ const drawertitle = [
 ];
 
 export default function _layout() {
+  console.log(useSegments());
   return (
     <Drawer
       screenOptions={{
         // headerShown: false,
-        headerLeft: () => <DrawerIcon  />,
+        headerLeft: () => <DrawerIcon />,
         headerRight: () => (
           <View style={{ marginRight: 20 }}>
             <AvatarIcon width={40} height={35} />

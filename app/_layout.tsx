@@ -9,6 +9,7 @@ import {
 } from "@expo-google-fonts/poppins";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
+import { UserInactivityProvider } from "@/context/userInactivity";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -29,24 +30,23 @@ export default function RootLayout() {
   }
 
   const authToken =
-    typeof window !== "undefined"
-      ? localStorage.getItem("isLoggedIn")
-      : null;
+    typeof window !== "undefined" ? localStorage.getItem("isLoggedIn") : null;
 
   const isLoggedIn = !!authToken;
 
   return (
-    <GestureHandlerRootView
-      style={{ flex: 1 }}
-      onLayout={onLayoutRootView}
-    >
-      <StatusBar barStyle="dark-content" />
-      <Stack screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="(auth)" />
-        <Stack.Protected guard={isLoggedIn}>
-          <Stack.Screen name="(drawer)" />
-        </Stack.Protected>
-      </Stack>
-    </GestureHandlerRootView>
+    <UserInactivityProvider>
+      <GestureHandlerRootView style={{ flex: 1 }} onLayout={onLayoutRootView}>
+        <StatusBar barStyle="dark-content" />
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="(auth)" />
+          <Stack.Screen name="white" options={{headerShown: false}}/>
+          <Stack.Screen name="lock" options={{headerShown: false}}/>
+          <Stack.Protected guard={isLoggedIn}>
+            <Stack.Screen name="(drawer)" />
+          </Stack.Protected>
+        </Stack>
+      </GestureHandlerRootView>
+    </UserInactivityProvider>
   );
 }
