@@ -53,8 +53,8 @@
         "expo-asset",
         {
           "assets": [
-            "path/to/file.png",
-            "path/to/directory"
+            // "path/to/file.png",
+            // "path/to/directory"
           ]
         }
       ],

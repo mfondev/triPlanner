@@ -1,18 +1,18 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-     "types": ["./types/declarations.d.ts"],
+    "types": ["./types/declarations.d.ts"],
+    "jsx": "react-jsx",
     "strict": true,
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@/*": ["./*"]
     }
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
     ".expo/types/**/*.ts",
-    "expo-env.d.ts"
-, "app/(drawer)/(home)/search/search-history"  ]
+    "expo-env.d.ts",
+    "app/(drawer)/(home)/search/search-history"
+  ]
 }
